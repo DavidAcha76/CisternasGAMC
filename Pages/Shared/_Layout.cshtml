@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CisternasGAMC - Simplificado</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")" asp-append-version="true">
+    <link rel="stylesheet" href="@Url.Content("~/css/adminlte.min.css")" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" asp-append-version="true"> <!-- Asegúrate de incluir esto -->
+    <link rel="stylesheet" href="@Url.Content("~/css/Calendar.css")" asp-append-version="true"> <!-- Opcional -->
+    <link rel="stylesheet" href="@Url.Content("~/CisternasGAMC.styles.css")" asp-append-version="true" />
+    <link rel="stylesheet" href="@Url.Content("~/css/DeliverStyle.css")" asp-append-version="true">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Josefin+Sans&family=Lilita+One&family=Marko+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="@Url.Content("~/css/Fondos.css")" asp-append-version="true">
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark">
+            <a href="@Url.Page("/Index")" class="navbar-brand">
+                <img src="@Url.Content("~/images/Logos/LogoCochabamba.png")" alt="Logo CisternasGAMC" class="brand-image img-circle" style="max-height: 40px; opacity: .8">
+                <span>CisternasGAMC</span>
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item nav-user">
+                    <a href="@Url.Page("/citizen/districts/index")" class="navbar-brand">
+                        <span>Distritos</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Content Area principal -->
+        <div class="content">
+            <div class="container">
+                <div>
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-links">
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Contacto</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        <a href="/Admin/Index" class="nav-link text-white pe-3">Panel Admin</a>
+                    }
+                    else if (User.IsInRole("driver"))
+                    {
+                        <a href="/driver/Index" class="nav-link text-white pe-3">Panel Driver</a>
+                    }
+
+                    <!-- Botón que activa el modal de logout -->
+                    <a href="#" class="nav-link text-white pe-3" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                }
+                else
+                {
+                    <a class="nav-link text-white pe-3" asp-area="" asp-page="/Login/Index">Login</a>
+                }
+            </div>
+
+            <strong>&copy; 2024 - CisternasGAMC</strong> - Todos los derechos reservados.
+            <div><b>Versión</b> 1.0.0</div>
+        </footer>
+    </div>
+
+    <!-- Modal de confirmación de logout -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirmar Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Seguro que deseas cerrar sesión?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+
+                    <!-- Formulario de logout -->
+                    <form method="post" asp-page="/Login/Logout">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="@Url.Content("~/lib/jquery/jquery.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/js/adminlte.js")" asp-append-version="true"></script>
+    <script src="@Url.Content("~/js/distritos.js")" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js"></script> <!-- Agrega esto para soporte de idiomas si es necesario -->
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

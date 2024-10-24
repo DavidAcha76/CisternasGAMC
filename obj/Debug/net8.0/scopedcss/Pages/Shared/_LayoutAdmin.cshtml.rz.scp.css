@@ -1,0 +1,43 @@
+/* Estilos del logo de la marca */
+a.navbar-brand[b-xfzi5uhxr8] {
+    white-space: normal;
+    text-align: center;
+    word-break: break-word; /* Para no romper palabras, sino hacer saltos de línea */
+}
+
+/* Estilo general para los enlaces */
+a[b-xfzi5uhxr8] {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+/* Estilo del menú de navegación activo */
+.nav-pills .nav-link.active[b-xfzi5uhxr8], .nav-pills .show > .nav-link[b-xfzi5uhxr8] {
+    color: #fff;
+    background-color: #1b6ec2;
+}
+
+/* Estilo del pie de página */
+.footer[b-xfzi5uhxr8] {
+    background: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+    position: relative;
+}
+
+    /* Mejora de la visibilidad en el pie de página */
+    .footer b[b-xfzi5uhxr8] {
+        font-weight: bold;
+    }
+
+/* Asegura que el contenido principal ocupe el espacio adecuado */
+.wrapper[b-xfzi5uhxr8] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper[b-xfzi5uhxr8] {
+    flex: 1;
+}

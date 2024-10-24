@@ -1,0 +1,53 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.IndexModel
+@{
+    Layout = "_LayoutAdmin";
+}
+
+<!-- Contenido principal de la página de bienvenida -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <div class="welcome-section bg-light p-5 rounded shadow">
+                <h1 class="display-4 text-primary mb-3">Bienvenido a <strong>Cisternas GAMC</strong></h1>
+                <p class="lead text-secondary mb-4">Tu plataforma para la gestión de cisternas y entregas en la comunidad. Explora los paneles de control, gestiona usuarios, monitorea entregas y más.</p>
+                <hr class="my-4">
+                <p class="text-secondary">Selecciona una opción del menú lateral para comenzar.</p>
+                <a class="btn btn-primary btn-lg" href="@Url.Page("/Admin/Cruds/CisternCrud/index")" role="button">Ver Cisternas</a>
+                <a class="btn btn-secondary btn-lg ml-2" href="@Url.Page("/Admin/Cruds/WaterDeliveryCrud/Create")" role="button">Generar Entrega</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Estilos adicionales -->
+<style>
+    .welcome-section {
+        background-image: url('@Url.Content("~/images/Logos/background-water.jpg")');
+        background-size: cover;
+        background-position: center;
+        color: white;
+    }
+
+    .welcome-section h1 {
+        font-weight: 700;
+    }
+
+    .welcome-section p {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+
+    .container {
+        padding-top: 50px;
+    }
+</style>

@@ -1,0 +1,30 @@
+﻿.cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.pdf {
+    width: 100%;
+    max-width: 800px;
+    height: 80vh;
+    border: none;
+}
+
+@media (max-width: 768px) {
+    .pdf {
+        width: 90%;
+        height: 60vh;
+    }
+}
+
+@media (max-width: 480px) {
+    .pdf {
+        width: 95%;
+        height: 50vh;
+    }
+}

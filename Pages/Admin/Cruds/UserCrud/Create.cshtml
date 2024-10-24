@@ -1,0 +1,68 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.UserCrud.CreateModel
+
+@{
+    ViewData["Title"] = "Crear Usuario";
+
+
+
+    Layout = "_LayoutAdmin"; // Asegúrate de que tu layout ya tenga los estilos y scripts de AdminLTE.
+}
+
+<section class="content-header">
+    <h1>Crear Usuario</h1>
+</section>
+
+<section class="content">
+    <div class="box box-primary">
+        <div class="box-body">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="User.FirstName" class="control-label">Nombre</label>
+                    <input asp-for="User.FirstName" class="form-control" />
+                    <span asp-validation-for="User.FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="User.LastName" class="control-label">Apellido</label>
+                    <input asp-for="User.LastName" class="form-control" />
+                    <span asp-validation-for="User.LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="User.Email" class="control-label">Correo Electrónico</label>
+                    <input asp-for="User.Email" class="form-control" />
+                    <span asp-validation-for="User.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="User.Password" class="control-label">Contraseña</label>
+                    <input asp-for="User.Password" class="form-control" />
+                    <span asp-validation-for="User.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="User.PhoneNumber" class="control-label">Número de Teléfono</label>
+                    <input asp-for="User.PhoneNumber" class="form-control" />
+                    <span asp-validation-for="User.PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="User.Role" class="control-label">Rol</label>
+                    <select asp-for="User.Role" class="form-control">
+                        <option value="">Seleccione un rol</option>
+                        <option value="admin">Administrador</option>
+                        <option value="driver">Conductor</option>
+                    </select>
+                    <span asp-validation-for="User.Role" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Crear" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

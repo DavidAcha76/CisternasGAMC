@@ -1,0 +1,64 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.WaterDeliveryCrud.CreateModel
+
+@{
+    ViewData["Title"] = "Crear Entrega";
+
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Entrega</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Crear</h3>
+            </div>
+            <form method="post">
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="WaterDelivery.CisternId" class="control-label">Numero de placa de Cisterna</label>
+                        <select asp-for="WaterDelivery.CisternId" class="form-control" asp-items="Model.Cisterns" required>
+                            <option value="">-- Seleccione una cisterna --</option>
+                        </select>
+                        <span asp-validation-for="WaterDelivery.CisternId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="WaterDelivery.DriverId" class="control-label">Nombre Conductor</label>
+                        <select asp-for="WaterDelivery.DriverId" class="form-control" asp-items="Model.Drivers" required>
+                            <option value="">-- Seleccione un conductor --</option>
+                        </select>
+                        <span asp-validation-for="WaterDelivery.DriverId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="WaterDelivery.OtbId" class="control-label">Elija la OTB</label>
+                        <select asp-for="WaterDelivery.OtbId" class="form-control" asp-items="Model.Otbs" required>
+                            <option value="">-- Seleccione una OTB --</option>
+                        </select>
+                        <span asp-validation-for="WaterDelivery.OtbId" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="WaterDelivery.DeliveryDate" class="control-label">Fecha de Entrega</label>
+                        <input asp-for="WaterDelivery.DeliveryDate" class="form-control" required />
+                        <span asp-validation-for="WaterDelivery.DeliveryDate" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

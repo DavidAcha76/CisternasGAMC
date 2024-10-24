@@ -1,0 +1,49 @@
+﻿@page "{waterDeliveryId:int?}"
+@model CisternasGAMC.Pages.Driver.DeliverModel
+@{
+    Layout = "_LayoutDriver";
+}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .form-container {
+        max-width: 500px;
+        margin: 3rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+    .btn-primary {
+        width: 100%;
+        font-size: 1.2rem;
+        padding: 0.75rem;
+    }
+</style>
+
+<div class="container">
+    <div class="form-container">
+        <h2>@Model.WaterDelivery?.Otb?.Name</h2>
+
+        <!-- Formulario para registrar llegada a la OTB -->
+        <form method="post" asp-page-handler="SetArrival">
+            <input type="hidden" name="waterDeliveryId" value="@Model.WaterDeliveryId" />
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-geo-alt-fill"></i> Llegada a la OTB
+            </button>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

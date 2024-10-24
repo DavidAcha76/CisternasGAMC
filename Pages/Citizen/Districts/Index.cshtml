@@ -1,0 +1,37 @@
+﻿@page
+@model CisternasGAMC.Pages.Citizen.Districts.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/Citizen/HomeAnimation.css" />
+<div class="container mt-5">
+    <section class="text-center">
+        <h1 class="display-4 mb-3 text-primary">
+            <span class="secondary-text">Centro de Distritos</span>
+        </h1>
+
+        <!-- OTB Cards -->
+        <div id="otbContainer" class="row mt-5">
+            @foreach (var district in Model.districts)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card otb-card shadow-lg border-0 hide-down distCont"
+                         style="
+                             background-image: url(@district.ImageRoute);
+                             background-size: cover;
+                             background-repeat: none;
+                             background-position: center;
+                             background-color: rgba(0, 0, 0, 0.4;"
+                         onmouseover="this.style.cursor='pointer'">
+
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="card-title">@district.DistrictId</h5>
+                            <a asp-page="Details" asp-route-id="@district.DistrictId" asp-route-pdfRoute="@district.PdfRoute">Ver detalles de la OTB</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>

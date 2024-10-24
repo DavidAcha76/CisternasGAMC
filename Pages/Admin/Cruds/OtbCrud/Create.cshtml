@@ -1,0 +1,57 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.OtbCrud.CreateModel
+
+@{
+    ViewData["Title"] = "Crear";
+
+
+
+    Layout = "_LayoutAdmin";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>Crear OTB</h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Ingresar Detalles de la OTB</h3>
+                    </div>
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label asp-for="Otb.Name">Nombre</label>
+                                <input asp-for="Otb.Name" class="form-control" />
+                                <span asp-validation-for="Otb.Name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Otb.FamilyCount">Cantidad de Familias</label>
+                                <input asp-for="Otb.FamilyCount" class="form-control" />
+                                <span asp-validation-for="Otb.FamilyCount" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Otb.District">Distrito</label>
+                                <input asp-for="Otb.District" class="form-control" />
+                                <span asp-validation-for="Otb.District" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <input type="submit" value="Crear" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

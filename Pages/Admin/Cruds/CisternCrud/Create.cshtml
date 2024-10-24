@@ -1,0 +1,51 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.CisternCrud.CreateModel
+
+@{
+    ViewData["Title"] = "Crear";
+
+
+
+    Layout = "_LayoutAdmin";
+}
+
+<h1 class="m-0 text-dark">Crear Cisterna</h1>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Detalles de la Cisterna</h3>
+            </div>
+            <!-- form start -->
+            <form method="post">
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Cistern.PlateNumber" class="control-label">Número de Placa</label>
+                        <input asp-for="Cistern.PlateNumber" class="form-control" />
+                        <span asp-validation-for="Cistern.PlateNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Cistern.Capacity" class="control-label">Capacidad</label>
+                        <input asp-for="Cistern.Capacity" class="form-control" />
+                        <span asp-validation-for="Cistern.Capacity" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                    <a asp-page="Index" class="btn btn-secondary">Volver a la Lista</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

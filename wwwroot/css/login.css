@@ -1,0 +1,24 @@
+﻿/* Centrar contenido en la pantalla */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px; /* Ajuste máximo para pantallas grandes */
+    padding: 20px;
+    margin: 20px;
+}
+
+.card {
+    width: 100%;
+}
+
+/* Asegurar que sea responsivo */
+@media (max-width: 576px) {
+    .login-box {
+        max-width: 100%; /* Usar todo el ancho de la pantalla en dispositivos pequeños */
+    }
+}

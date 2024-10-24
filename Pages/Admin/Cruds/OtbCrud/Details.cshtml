@@ -1,0 +1,179 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.OtbCrud.DetailsModel
+@{
+    ViewData["Title"] = "Detalles de la OTB";
+
+
+
+    Layout = "_LayoutAdmin";
+}
+
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>Detalles de la OTB: @Model.Otb.Name</h1>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Detalles</h3>
+                    </div>
+                    <div class="box-body">
+                        <dl class="dl-horizontal">
+                            <dt>Nombre</dt>
+                            <dd>@Html.DisplayFor(model => model.Otb.Name)</dd>
+                            <dt>Cantidad de Familias</dt>
+                            <dd>@Html.DisplayFor(model => model.Otb.FamilyCount)</dd>
+                            <dt>Distrito</dt>
+                            <dd>@Html.DisplayFor(model => model.Otb.District)</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Total Water Delivered -->
+        <h4>Total Agua Entregada a la OTB: @Model.TotalWaterDelivered litros</h4>
+
+        <!-- Cisterns List -->
+        <h4>Cisternas que Visitaron la OTB</h4>
+        <ul>
+            @foreach (var cistern in Model.Cisterns)
+            {
+                <li>@cistern</li>
+            }
+        </ul>
+
+        <!-- Drivers List -->
+        <h4>Conductores que Visitaron la OTB</h4>
+        <ul>
+            @foreach (var driver in Model.Drivers)
+            {
+                <li>@driver</li>
+            }
+        </ul>
+
+        <!-- Water Delivered per Delivery Chart -->
+        <h4>Reporte Gráfico de Agua Entregada por Envío</h4>
+        <div class="chart-container" style="position: relative; height: 300px;">
+            <canvas id="waterPerDeliveryChart"></canvas>
+        </div>
+
+        <!-- Cistern Visits Chart -->
+        <h4>Reporte Gráfico de Cisternas y Visitas a la OTB</h4>
+        <div class="chart-container" style="position: relative; height: 300px;">
+            <canvas id="cisternVisitsChart"></canvas>
+        </div>
+
+        <!-- Driver Visits Chart -->
+        <h4>Reporte Gráfico de Conductores y Visitas a la OTB</h4>
+        <div class="chart-container" style="position: relative; height: 300px;">
+            <canvas id="driverVisitsChart"></canvas>
+        </div>
+    </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Chart 1: Water Delivered per Delivery
+    var ctx1 = document.getElementById('waterPerDeliveryChart').getContext('2d');
+    var waterPerDeliveryChart = new Chart(ctx1, {
+        type: 'line',
+        data: {
+            labels: @Json.Serialize(Model.DeliveryDates), // Delivery dates
+            datasets: [{
+                label: 'Litros de Agua Entregada',
+                data: @Json.Serialize(Model.WaterPerDelivery), // Water delivered per delivery
+                backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Litros de Agua'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Fechas de Entrega'
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart 2: Cistern Visits
+    var ctx2 = document.getElementById('cisternVisitsChart').getContext('2d');
+    var cisternVisitsChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: @Json.Serialize(Model.Cisterns), // Cistern names (plate numbers)
+            datasets: [{
+                label: 'Número de Visitas',
+                data: @Json.Serialize(Model.CisternVisits), // Count of visits per cistern
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Número de Visitas'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Cisternas'
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart 3: Driver Visits
+    var ctx3 = document.getElementById('driverVisitsChart').getContext('2d');
+    var driverVisitsChart = new Chart(ctx3, {
+        type: 'bar',
+        data: {
+            labels: @Json.Serialize(Model.Drivers), // Driver names
+            datasets: [{
+                label: 'Número de Visitas',
+                data: @Json.Serialize(Model.DriverVisits), // Count of visits per driver
+                backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                borderColor: 'rgba(255, 159, 64, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Número de Visitas'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Conductores'
+                    }
+                }
+            }
+        }
+    });
+</script>

@@ -1,0 +1,87 @@
+﻿/* Título principal estilo */
+.display-4 {
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+    .display-4 strong {
+        display: block;
+        font-size: 3.5rem; /* Aumentar tamaño del 'Entregas de Agua' */
+    }
+
+    .display-4 .secondary-text {
+        font-size: 2rem;
+        display: block; /* Hace que esté apilado el texto */
+    }
+
+h1 {
+    font-family: "Marko One", serif;
+}
+
+/* Card Styles */
+.card {
+    border-radius: 15px; /* Esquinas redondeadas */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Default background color (programmed) */
+.normal-bg {
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco translúcido */
+    border: 1px solid #ccc; /* Borde sutil */
+}
+
+/* Green background for "in progress" */
+.green-bg {
+    background-color: rgba(56, 193, 114, 0.9); /* Verde brillante */
+    border: 1px solid #28a745; /* Borde verde oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+/* Red background for "completed" */
+.red-bg {
+    background-color: rgba(244, 67, 54, 0.9); /* Rojo brillante */
+    border: 1px solid #dc3545; /* Borde rojo oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+/* Hover effect for all cards */
+.card:hover {
+    transform: translateY(-5px); /* Desplazamiento suave al hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Sombra suave */
+}
+
+/* Card title styling */
+.card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333; /* Color oscuro */
+}
+
+/* Text within the card */
+.card-text {
+    font-size: 1rem;
+    color: #444; /* Texto oscuro */
+}
+
+/* Adding some padding to the card */
+.card-body {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 768px) {
+    .card-title {
+        font-size: 1.3rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+}

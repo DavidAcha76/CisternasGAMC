@@ -1,0 +1,161 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.CisternCrud.DetailsModel
+@{
+    ViewData["Title"] = "Detalles";
+
+    Layout = "_LayoutAdmin";
+}
+
+<div class="card card-info">
+    <div class="card-header">
+        <h3 class="card-title">Detalles de la Cisterna</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">Estado</dt>
+            <dd class="col-sm-8">
+                @(Model.Cistern.Status switch
+
+                {
+                    1 => "Activo",
+                    2 => "Mantenimiento",
+                    3 => "Otro",
+                    _ => "Desconocido"
+
+                })
+            </dd>
+
+            <dt class="col-sm-4">Número de Placa</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cistern.PlateNumber)</dd>
+
+            <dt class="col-sm-4">Capacidad</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Cistern.Capacity)</dd>
+        </dl>
+
+        <!-- Water Delivered by OTB Chart -->
+        <h4>Reporte Gráfico de Agua Entregada a las OTBs</h4>
+        <div class="chart-container" style="position: relative; height: 300px;">
+            <canvas id="waterDeliveryChart"></canvas>
+        </div>
+
+        <!-- Driver Usage Chart -->
+        <h4>Reporte Gráfico de Conductores y Uso de la Cisterna</h4>
+        <div class="chart-container" style="position: relative; height: 300px;">
+            <canvas id="driverUsageChart"></canvas>
+        </div>
+
+        <!-- Water Delivered per Delivery Chart -->
+        <h4>Reporte Gráfico de Agua Entregada por Envío</h4>
+        <div class="chart-container" style="position: relative; height: 300px;">
+            <canvas id="waterPerDeliveryChart"></canvas>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <a asp-page="./Edit" asp-route-id="@Model.Cistern.CisternId" class="btn btn-warning">Editar</a>
+        <a asp-page="./Index" class="btn btn-secondary">Volver a la Lista</a>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Chart 1: Water Delivered by OTB
+    var ctx1 = document.getElementById('waterDeliveryChart').getContext('2d');
+    var waterDeliveryChart = new Chart(ctx1, {
+        type: 'bar',
+        data: {
+            labels: @Json.Serialize(Model.OTBs), // OTBs names
+            datasets: [{
+                label: 'Litros de Agua Entregada',
+                data: @Json.Serialize(Model.WaterDeliveredByOTBs), // Water delivered data
+                backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Litros de Agua'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'OTBs'
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart 2: Driver Usage
+    var ctx2 = document.getElementById('driverUsageChart').getContext('2d');
+    var driverUsageChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: @Json.Serialize(Model.DriverNames), // Driver names
+            datasets: [{
+                label: 'Número de Usos',
+                data: @Json.Serialize(Model.DriverUsageCounts), // Driver usage data
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Número de Usos'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Conductores'
+                    }
+                }
+            }
+        }
+    });
+
+    // Chart 3: Water Delivered per Delivery
+    var ctx3 = document.getElementById('waterPerDeliveryChart').getContext('2d');
+    var waterPerDeliveryChart = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: @Json.Serialize(Model.DeliveryDates), // Delivery dates
+            datasets: [{
+                label: 'Litros de Agua Entregada',
+                data: @Json.Serialize(Model.WaterPerDelivery), // Water delivered per delivery data
+                backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 2,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Litros de Agua'
+                    }
+                },
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Fechas de Entrega'
+                    }
+                }
+            }
+        }
+    });
+</script>

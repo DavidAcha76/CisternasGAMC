@@ -1,0 +1,52 @@
+﻿@page
+@model CisternasGAMC.Pages.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/IndexCitizen.css" />
+<link rel="stylesheet" href="~/css/Citizen/HomeAnimation.css" />
+
+<!-- Loader -->
+<div id="loader" class="loader">
+    <img src="@Url.Content("~/images/Logos/LogoCochabamba.png")" alt="Cargando..."> <!-- Cambia la ruta de la imagen según tu estructura -->
+</div>
+
+<!-- Main container -->
+<div class="container mt-5">
+    <section class="text-center">
+        <h1 class="display-4 mb-3 text-primary">
+            <strong>Bienvenido</strong>
+            <span class="secondary-text">a Tu Centro Comunitario</span>
+        </h1>
+        <p class="lead">Encuentra tu OTB y revisa las entregas de agua fácilmente.</p>
+
+        <!-- Search Box -->
+        <div class="form-group mt-4">
+            <input type="text" id="searchBox" class="form-control form-control-lg search-box"
+                   placeholder="Escribe el nombre de tu OTB..." oninput="validateInput()" onkeyup="filterOtbs()">
+        </div>
+
+        <!-- OTB Cards -->
+        <div id="otbContainer" class="row mt-5">
+            @foreach (var otb in Model.Otbs)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card otb-card shadow-lg border-0"
+                         style="background-color: rgba(255, 255, 255, 0.85);"
+                         onclick="goToDetails(@otb.OtbId)"
+                         onmouseover="this.style.cursor='pointer'">
+
+                        <!-- Card Body with Flexbox to center the content -->
+                        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+                            <h5 class="card-title">@otb.Name</h5>
+                            <p class="card-text">Haz clic para ver el calendario de entregas.</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>
+<script src="@Url.Content("~/js/home.js")"></script>
+<script src="~/js/loading.js"></script>

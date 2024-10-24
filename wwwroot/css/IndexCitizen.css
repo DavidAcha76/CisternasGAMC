@@ -1,0 +1,102 @@
+﻿/* Título principal estilo */
+.display-4 {
+    font-weight: bold;
+    color: white;
+    text-align: center;
+}
+
+    .display-4 strong {
+        display: block;
+        font-size: 3.5rem; /* Aumentar tamaño del 'Bienvenido' */
+    }
+
+    .display-4 .secondary-text {
+        font-size: 2rem;
+        display: block; /* Hace que esté apilado el texto */
+    }
+h1 {
+    font-family: "Marko One", serif;
+}
+/* Buscador más redondeado */
+.search-box {
+    border-radius: 30px; /* Más redondeado */
+    padding: 10px 20px;
+    border: 2px solid #007bff; /* Borde azul */
+}
+
+.lead {
+    color: white;
+}
+
+/* Animación de aparición al hacer scroll */
+.otb-card {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease; /* Incrementa el tiempo de transición */
+}
+
+    .otb-card.show {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s ease, transform 0.8s ease; /* Aparece suavemente */
+    }
+
+    .otb-card.hide-down {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease, transform 0.8s ease; /* Desaparece suavemente */
+    }
+
+    /* Filtrar con animación de aparición */
+    .otb-card.slide-down {
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .otb-card.slide-up {
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Animación de filtrado en buscador */
+    .otb-card.hide {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease; /* Animación de desaparición suave */
+    }
+
+    .otb-card.fade-in {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.3s ease, transform 0.3s ease; /* Animación de aparición suave */
+    }
+
+    /* Slide Up - Desaparece hacia arriba */
+    .otb-card.slide-up {
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    /* Slide Down - Aparece desde abajo */
+    .otb-card.slide-down {
+        transform: translateY(0);
+        opacity: 1;
+        transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+/* Degradado sutil de azul claro a blanco en el fondo del contenedor */
+.otb-card {
+    background: linear-gradient(to top, rgba(0, 128, 255, 0.2), rgba(255, 255, 255, 0.8)); /* Degradado azul claro */
+    background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco ligeramente translúcido */
+    border-radius: 15px; /* Añadir esquinas redondeadas */
+    transition: background-color 0.1s ease, transform 0.3s ease; /* Transición suave al hover */
+}
+
+    /* Opción al hacer hover si quieres que el degradado se intensifique un poco */
+    .otb-card:hover {
+        background: linear-gradient(to top, rgba(0, 128, 255, 0.3), rgba(255, 255, 255, 0.9)); /* Intensifica el degradado */
+        transform: scale(1.03); /* Aumenta el tamaño en un 3% */
+    }

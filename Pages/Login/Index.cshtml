@@ -1,0 +1,86 @@
+﻿@page
+@model CisternasGAMC.Pages.Login.IndexModel
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/login.css">
+
+<div class="main-container">
+    <div class="login-box">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+                <a href="#" class="h1"><b>Login</b></a>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    @Html.AntiForgeryToken()
+
+                    <!-- Campo para ingresar el correo -->
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" asp-for="Correo">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Campo para ingresar la contraseña -->
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" asp-for="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Botón para enviar los datos del formulario de login -->
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+                        </div>
+                    </div>
+                </form>
+                @ViewData["Message"]
+                <!-- Enlace para abrir el modal de restablecimiento de contraseña -->
+                <p class="mb-1 mt-2 text-center">
+                    <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Olvidé mi contraseña</a>
+                </p>
+                @if (Model.LoginFailed)
+                {
+                    <p style="color:red">Credenciales incorrectas. Inténtalo de nuevo.</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para restablecimiento de contraseña -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="forgotPasswordLabel">Restablecer Contraseña</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" asp-page-handler="SendPasswordReset">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label for="emailReset">Ingresa tu correo electrónico</label>
+                        <input type="email" class="form-control" id="emailReset" name="emailReset" placeholder="Correo electrónico" required>
+                        <small class="form-text text-muted">Te enviaremos una nueva contraseña si tu correo es válido.</small>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Enviar nueva contraseña</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>

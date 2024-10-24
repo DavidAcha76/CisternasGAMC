@@ -1,0 +1,60 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.WaterDeliveryCrud.DetailsModel
+
+@{
+    ViewData["Title"] = "Detalles de la Entrega de Agua";
+
+
+
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Detalles</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-info">
+            <div class="card-header">
+                <h3 class="card-title">Información de la Entrega</h3>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Cisterna</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.Cistern.PlateNumber</dd>
+
+                    <dt class="col-sm-4">Conductor</dt>
+                    <dd class="col-sm-8">@($"{Model.WaterDelivery.Driver.FirstName} {Model.WaterDelivery.Driver.LastName}")</dd>
+
+                    <dt class="col-sm-4">OTB</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.Otb.Name</dd>
+
+                    <dt class="col-sm-4">Fecha de Entrega</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.DeliveryDate.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                    <dt class="col-sm-4">Cantidad Entregada</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.DeliveredAmount</dd>
+
+                    <dt class="col-sm-4">Estado de la Entrega</dt>
+                    <dd class="col-sm-8">
+                        @(Model.WaterDelivery.DeliveryStatus switch
+                        {
+                            1 => "Programada",
+                            2 => "En Proceso",
+                            3 => "Finalizada",
+                            _ => "Desconocido"
+
+                        })
+                    </dd>
+                    <dt class="col-sm-4">Fecha de Llegada</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.ArrivalDate?.ToString("dd/MM/yyyy HH:mm") ?? "N/A"</dd>
+
+                    <dt class="col-sm-4">Fecha de Salida</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.DepartureDate?.ToString("dd/MM/yyyy HH:mm") ?? "N/A"</dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-primary" asp-page="./Edit" asp-route-id="@Model.WaterDelivery.WaterDeliveryId">Editar</a>
+            </div>
+        </div>
+    </div>
+</div>

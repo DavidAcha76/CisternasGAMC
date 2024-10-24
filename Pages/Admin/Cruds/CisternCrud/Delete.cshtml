@@ -1,0 +1,47 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.CisternCrud.DeleteModel
+
+@{
+    ViewData["Title"] = "Eliminar";
+
+
+
+    Layout = "_LayoutAdmin";
+}
+
+<section class="content-header">
+    <h1>Eliminar Cisterna</h1>
+</section>
+
+<section class="content">
+    <div class="box box-danger">
+        <div class="box-header with-border">
+            <h3 class="box-title">¿Está seguro de que desea eliminar esta cisterna?</h3>
+        </div>
+        <div class="box-body">
+            <dl class="row">
+                <dt class="col-sm-3">Estado</dt>
+                <dd class="col-sm-8">
+                    @(Model.Cistern.Status switch
+                    {
+                        1 => "Activo",
+                        2 => "Mantenimiento",
+                        3 => "Otro",
+                        _ => "Desconocido"
+                    })
+                </dd>
+                <dt class="col-sm-3">Número de Placa</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Cistern.PlateNumber)</dd>
+                <dt class="col-sm-3">Capacidad</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Cistern.Capacity)</dd>
+            </dl>
+        </div>
+        <div class="box-footer">
+            <form method="post">
+                <input type="hidden" asp-for="Cistern.CisternId" />
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                <a asp-page="./Index" class="btn btn-default">Volver a la Lista</a>
+            </form>
+        </div>
+    </div>
+</section>

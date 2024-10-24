@@ -1,0 +1,44 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.WaterDeliveryCrud.DeleteModel
+
+@{
+    ViewData["Title"] = "Eliminar Entrega de Agua";
+
+
+
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Eliminar Entrega de Agua</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-danger">
+            <div class="card-header">
+                <h3 class="card-title">Confirmar Eliminación</h3>
+            </div>
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Cisterna</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.Cistern.PlateNumber</dd>
+
+                    <dt class="col-sm-4">Conductor</dt>
+                    <dd class="col-sm-8">@($"{Model.WaterDelivery.Driver.FirstName} {Model.WaterDelivery.Driver.LastName}")</dd>
+
+                    <dt class="col-sm-4">OTB</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.Otb.Name</dd>
+
+                    <dt class="col-sm-4">Fecha de Entrega</dt>
+                    <dd class="col-sm-8">@Model.WaterDelivery.DeliveryDate.ToString("dd/MM/yyyy HH:mm")</dd>
+                </dl>
+            </div>
+            <div class="card-footer">
+                <form method="post">
+                    <input type="hidden" asp-for="WaterDelivery.WaterDeliveryId" />
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                    <a class="btn btn-secondary" asp-page="./Index">Volver a la Lista</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

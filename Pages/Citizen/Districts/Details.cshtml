@@ -1,0 +1,12 @@
+﻿@page
+@model CisternasGAMC.Pages.Citizen.Districts.DetailsModel
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/Citizen/Districts.css" />
+
+<div class="cont">
+    <h1>Mapa del distrito @Model.districtId</h1>
+    <embed src="@Model.docRoute" type="application/pdf" class="pdf"/>
+</div>

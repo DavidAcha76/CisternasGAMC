@@ -1,0 +1,83 @@
+﻿html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Estructura de la página */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Estilo para la barra de navegación */
+.navbar {
+    background-color: #0077cc;
+    padding: 10px 20px;
+}
+
+    .navbar .navbar-brand {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    .navbar a.nav-link {
+        color: #ffffff;
+        margin-right: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+        .navbar a.nav-link:hover {
+            color: #ffd700; /* Color de hover */
+        }
+
+/* Estilo para enlaces generales */
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+/* Estilo para el footer */
+footer {
+    background: #343a40;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+    footer .footer-links a {
+        color: #f8f9fa;
+        margin: 0 10px;
+    }
+
+        footer .footer-links a:hover {
+            color: #0077cc;
+        }
+
+    footer strong {
+        display: block;
+        margin: 10px 0;
+    }
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .navbar a.nav-link {
+        font-size: 0.9rem;
+    }
+
+    footer .footer-links {
+        flex-direction: column;
+    }
+}

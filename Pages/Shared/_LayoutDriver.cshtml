@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CisternasGAMC</title>
+
+    <!-- Fuentes y CSS -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="@Url.Content("~/lib/fontawesome-free/css/all.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/adminlte.min.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/styles.css")">
+    <link rel="stylesheet" href="@Url.Content("~/CisternasGAMC.styles.css")">
+    <link rel="stylesheet" href="@Url.Content("~/css/Fondos.css")" asp-append-version="true">
+
+        
+</head>
+
+<body class="hold-transition layout-top-nav">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand navbar-dark">
+            <a href="@Url.Page("/Index")" class="navbar-brand">
+                <img src="@Url.Content("~/images/Logos/LogoCochabamba.png")" alt="Logo CisternasGAMC" class="brand-image img-circle" style="max-height: 40px; opacity: .8">
+                <span>CisternasGAMC</span>
+            </a>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item nav-user">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#userDetailsModal">
+                        <i class="fas fa-user-circle fa-lg"></i>
+                        @User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Contenido Principal -->
+        <div class="content">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-links">
+                <a href="#">Política de Privacidad</a>
+                <a href="#">Términos y Condiciones</a>
+                <a href="#">Contacto</a>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        <a href="/Admin/Index" class="nav-link text-white pe-3">Panel Admin</a>
+                    }
+                    else if (User.IsInRole("driver"))
+                    {
+                        <a href="/driver/Index" class="nav-link text-white pe-3">Panel Driver</a>
+                    }
+
+                    <!-- Botón que activa el modal de logout -->
+                    <a href="#" class="nav-link text-white pe-3" data-toggle="modal" data-target="#logoutModal">Logout</a>
+                }
+                else
+                {
+                    <a class="nav-link text-white pe-3" asp-area="" asp-page="/Login/Index">Login</a>
+                }
+            </div>
+
+            <strong>&copy; 2024 - CisternasGAMC</strong> - Todos los derechos reservados.
+            <div><b>Versión</b> 1.0.0</div>
+        </footer>
+    </div>
+
+    <!-- Modal de detalles del usuario -->
+    <div class="modal fade" id="userDetailsModal" tabindex="-1" role="dialog" aria-labelledby="userDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="userDetailsModalLabel">Detalles del Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Nombre:</strong> @User.FindFirst(System.Security.Claims.ClaimTypes.Name)?.Value</p>
+                    <p><strong>Correo electrónico:</strong> @User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value</p>
+                    <p><strong>Rol:</strong> @User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value</p>
+                    <a href="/login/changePassword" class="btn btn-warning btn-block">Cambiar Contraseña</a>
+                    <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#logoutModal" data-dismiss="modal">Cerrar Sesión</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de logout -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirmar Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Seguro que deseas cerrar sesión?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <form method="post" asp-page="/Login/Logout">
+                        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="@Url.Content("~/lib/jquery/jquery.min.js")"></script>
+    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
+    <script src="@Url.Content("~/js/adminlte.js")"></script>
+    <script>
+        $(document).ready(function () {
+            var hasError = '@TempData["Message"]' !== '';
+            if (hasError) {
+                $('#changePasswordModal').modal('show');
+                var errorField = '@TempData["ErrorField"]';
+                if (errorField === "OldPassword") {
+                    $('#oldPassword').val('');
+                }
+                if (errorField === "NewPassword") {
+                    $('#newPassword').val('');
+                    $('#confirmNewPassword').val('');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
