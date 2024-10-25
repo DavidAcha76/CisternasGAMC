@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "WDEXN8FC1EYph6dHPf008pn5dMAdgXpT2vONuIu+svU=",
+  "Hash": "JUY03/EVVcgAXnaZvj/9blyR9HeDjPOaTXobS+5zvWg=",
   "Source": "CisternasGAMC",
   "BasePath": "_content/CisternasGAMC",
   "Mode": "Default",
@@ -604,6 +604,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\Calendar.css"
+    },
+    {
+      "Identity": "C:\\Users\\Kiurt\\Documents\\GitHub\\CisternasGAMC\\wwwroot\\css\\Citizen\\Districts.css",
+      "SourceId": "CisternasGAMC",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Kiurt\\Documents\\GitHub\\CisternasGAMC\\wwwroot\\",
+      "BasePath": "_content/CisternasGAMC",
+      "RelativePath": "css/Citizen/Districts.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\Citizen\\Districts.css"
     },
     {
       "Identity": "C:\\Users\\Kiurt\\Documents\\GitHub\\CisternasGAMC\\wwwroot\\css\\Citizen\\HomeAnimation.css",
