@@ -12,10 +12,11 @@
 }
 
     .loader img {
-        width: 150px;
+        width: 900px; /* Multiplicado por 3 */
         height: auto;
         animation: fadeinout 1.5s ease-in-out infinite alternate, spin 4s linear infinite;
     }
+
 /* Animación para el efecto de fade in/out y rotación */
 @keyframes fadeinout {
     0% {

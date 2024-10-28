@@ -15,10 +15,12 @@ html[b-8t99jayboj], body[b-8t99jayboj] {
     flex: 1;
     padding: 20px;
 }
-
+.text-primary[b-8t99jayboj] {
+    color: #92b3d7 !important
+}
 /* Estilo para la barra de navegación */
 .navbar[b-8t99jayboj] {
-    background-color: #0077cc;
+    background-color: #73D4E7;
     padding: 10px 20px;
 }
 
@@ -42,6 +44,9 @@ html[b-8t99jayboj], body[b-8t99jayboj] {
 a[b-8t99jayboj] {
     color: #0077cc;
     text-decoration: none;
+}
+span[b-8t99jayboj] {
+    color: #424f83;
 }
 
     a:hover[b-8t99jayboj] {

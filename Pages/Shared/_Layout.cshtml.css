@@ -14,10 +14,9 @@
     flex: 1;
     padding: 20px;
 }
-
 /* Estilo para la barra de navegación */
 .navbar {
-    background-color: #0077cc;
+    background-color: #73D4E7;
     padding: 10px 20px;
 }
 
@@ -41,6 +40,9 @@
 a {
     color: #0077cc;
     text-decoration: none;
+}
+span {
+    color: #424f83;
 }
 
     a:hover {

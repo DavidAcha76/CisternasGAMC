@@ -21,6 +21,9 @@ namespace CisternasGAMC.Pages.Citizen
 
         public List<CalendarEvent> CalendarEvents { get; set; } = new List<CalendarEvent>();
 
+        public DateTime StartOfWeek { get; private set; }
+        public DateTime EndOfWeek { get; private set; }
+
         public CisternCalendarModel(ApplicationDbContext context)
         {
             _context = context;
@@ -32,24 +35,27 @@ namespace CisternasGAMC.Pages.Citizen
             {
                 SelectedOtb = selectedOtb.Value;
                 LoadCisternStatus();
+
                 var otbData = _context.Otbs.FirstOrDefault(o => o.OtbId == SelectedOtb);
                 if (otbData != null)
                 {
                     NombreOTB = otbData.Name;
                 }
 
-                // Get water deliveries for each status
+                StartOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+                EndOfWeek = StartOfWeek.AddDays(6);
+
                 var waterDeliveries = GetWaterDeliveriesByStatus(1)
                     .Concat(GetWaterDeliveriesByStatus(2))
                     .Concat(GetWaterDeliveriesByStatus(3))
                     .ToList();
 
-                // Transform deliveries into calendar events
                 CalendarEvents = waterDeliveries.Select(w => new CalendarEvent
                 {
                     Title = w.DeliveryStatus.ToString(),
                     DayOfWeek = w.DeliveryDate.DayOfWeek.ToString(),
-                    TimeSlot = GetTimeSlot(w.DeliveryDate.Hour)
+                    TimeSlot = GetTimeSlot(w.DeliveryDate.Hour),
+                    CssClass = GetCssClassForStatus(w.DeliveryStatus) // Nueva propiedad para el estilo
                 }).ToList();
             }
         }
@@ -57,7 +63,8 @@ namespace CisternasGAMC.Pages.Citizen
         public List<WaterDelivery> GetWaterDeliveriesByStatus(int status)
         {
             return _context.WaterDeliveries
-                .Where(w => w.OtbId == SelectedOtb && w.DeliveryStatus == status)
+                .Where(w => w.OtbId == SelectedOtb && w.DeliveryStatus == status
+                            && w.DeliveryDate >= StartOfWeek && w.DeliveryDate <= EndOfWeek)
                 .ToList();
         }
 
@@ -68,7 +75,6 @@ namespace CisternasGAMC.Pages.Citizen
 
             if (cistern != null)
             {
-                // Determine icon based on delivery status
                 switch (cistern.DeliveryStatus)
                 {
                     case 1:
@@ -87,7 +93,7 @@ namespace CisternasGAMC.Pages.Citizen
             }
             else
             {
-                CisternStatusIcon = ""; // Default icon if no deliveries
+                CisternStatusIcon = "";
             }
         }
 
@@ -101,14 +107,23 @@ namespace CisternasGAMC.Pages.Citizen
                 return "En la Noche";
         }
 
-        public class CalendarEvent
+        // Método para devolver la clase CSS según el estado
+        private string GetCssClassForStatus(int status)
         {
-            public string Title { get; set; }
-            public string DayOfWeek { get; set; }
-            public string TimeSlot { get; set; }
+            return status switch
+            {
+                1 => "delivery-scheduled",   // Programada
+                2 => "delivery-in-process",  // En entrega
+                3 => "delivery-completed",   // Pasada
+                _ => "delivery-default",     // Por defecto
+            };
         }
 
-        // Method to translate DayOfWeek to Spanish
+        public string GetCurrentWeekRange()
+        {
+            return $"{StartOfWeek:dd} - {EndOfWeek:dd}";
+        }
+
         public string GetSpanishDayName(DayOfWeek day)
         {
             return day switch
@@ -122,6 +137,14 @@ namespace CisternasGAMC.Pages.Citizen
                 DayOfWeek.Sunday => "Domingo",
                 _ => day.ToString(),
             };
+        }
+
+        public class CalendarEvent
+        {
+            public string Title { get; set; }
+            public string DayOfWeek { get; set; }
+            public string TimeSlot { get; set; }
+            public string CssClass { get; set; } // Nueva propiedad para la clase CSS
         }
     }
 }

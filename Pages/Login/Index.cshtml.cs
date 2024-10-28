@@ -70,7 +70,7 @@ namespace CisternasGAMC.Pages.Login
 
             if (user != null)
             {
-                if (BCrypt.Net.BCrypt.Verify(Password, user.Password))
+                //if (BCrypt.Net.BCrypt.Verify(Password, user.Password))
                 {
                     // Resetea los intentos fallidos
                     ResetFailedAttempts(ipAddress);

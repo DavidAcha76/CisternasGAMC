@@ -11,7 +11,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CisternasGAMC.Pages.Login
 {
-    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "admin y driver")]
     public class ChangePasswordModel : PageModel
     {
         private readonly ApplicationDbContext _context;
