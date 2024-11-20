@@ -17,12 +17,15 @@ namespace CisternasGAMC.Pages.Citizen
 
         public string NombreOTB { get; set; }
 
+        public string UrlTelegram { get; set; }
+
         public string CisternStatusIcon { get; set; }
 
         public List<CalendarEvent> CalendarEvents { get; set; } = new List<CalendarEvent>();
 
         public DateTime StartOfWeek { get; private set; }
         public DateTime EndOfWeek { get; private set; }
+        public string ProgrammedDeliveriesMessage { get; set; }
 
         public CisternCalendarModel(ApplicationDbContext context)
         {
@@ -31,97 +34,115 @@ namespace CisternasGAMC.Pages.Citizen
 
         public void OnGet(int? selectedOtb)
         {
-            if (selectedOtb.HasValue)
+            if (!selectedOtb.HasValue)
             {
-                SelectedOtb = selectedOtb.Value;
-                LoadCisternStatus();
-
-                var otbData = _context.Otbs.FirstOrDefault(o => o.OtbId == SelectedOtb);
-                if (otbData != null)
-                {
-                    NombreOTB = otbData.Name;
-                }
-
-                StartOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
-                EndOfWeek = StartOfWeek.AddDays(6);
-
-                var waterDeliveries = GetWaterDeliveriesByStatus(1)
-                    .Concat(GetWaterDeliveriesByStatus(2))
-                    .Concat(GetWaterDeliveriesByStatus(3))
-                    .ToList();
-
-                CalendarEvents = waterDeliveries.Select(w => new CalendarEvent
-                {
-                    Title = w.DeliveryStatus.ToString(),
-                    DayOfWeek = w.DeliveryDate.DayOfWeek.ToString(),
-                    TimeSlot = GetTimeSlot(w.DeliveryDate.Hour),
-                    CssClass = GetCssClassForStatus(w.DeliveryStatus) // Nueva propiedad para el estilo
-                }).ToList();
+                ProgrammedDeliveriesMessage = "No se seleccionó ninguna OTB.";
+                return;
             }
+
+            SelectedOtb = selectedOtb.Value;
+            LoadOtbData();
+            LoadCalendarData();
         }
 
-        public List<WaterDelivery> GetWaterDeliveriesByStatus(int status)
+        private void LoadOtbData()
         {
-            return _context.WaterDeliveries
-                .Where(w => w.OtbId == SelectedOtb && w.DeliveryStatus == status
-                            && w.DeliveryDate >= StartOfWeek && w.DeliveryDate <= EndOfWeek)
+            var otbData = _context.Otbs.FirstOrDefault(o => o.OtbId == SelectedOtb);
+            if (otbData != null)
+            {
+                NombreOTB = otbData.Name;
+                UrlTelegram = otbData.UrlTelegram;
+            }
+            LoadCisternStatus();
+        }
+
+        private void LoadCalendarData()
+        {
+            StartOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek + (int)DayOfWeek.Monday);
+            EndOfWeek = StartOfWeek.AddDays(6);
+
+            var waterDeliveries = GetWaterDeliveriesByStatus(1, 2, 3);
+
+            CalendarEvents = waterDeliveries.Select(w => new CalendarEvent
+            {
+                Title = w.DeliveryStatus.ToString(),
+                DayOfWeek = w.DeliveryDate.DayOfWeek.ToString(),
+                TimeSlot = GetTimeSlot(w.DeliveryDate.Hour),
+                CssClass = GetCssClassForStatus(w.DeliveryStatus)
+            }).ToList();
+
+            var programadas = waterDeliveries
+                .Select(w => new { w.DeliveryDate, DayName = GetSpanishDayName(w.DeliveryDate.DayOfWeek) })
+                .Distinct()
                 .ToList();
+
+            ProgrammedDeliveriesMessage = programadas.Any()
+                ? $"Entrega programada para el día {string.Join(" / ", programadas.Select(p => $"{p.DayName} {p.DeliveryDate:dd/MM}"))}"
+                : "No hay entregas programadas para esta semana.";
         }
 
         private void LoadCisternStatus()
         {
             var cistern = _context.WaterDeliveries
-                .FirstOrDefault(w => w.OtbId == SelectedOtb);
+                .Where(w => w.OtbId == SelectedOtb)
+                .OrderByDescending(w => w.DeliveryDate)
+                .FirstOrDefault();
 
-            if (cistern != null)
+            CisternStatusIcon = cistern?.DeliveryStatus switch
             {
-                switch (cistern.DeliveryStatus)
-                {
-                    case 1:
-                        CisternStatusIcon = "Entrega Programada";
-                        break;
-                    case 2:
-                        CisternStatusIcon = "Entrega En Curso";
-                        break;
-                    case 3:
-                        CisternStatusIcon = "Entrega Finalizada";
-                        break;
-                    default:
-                        CisternStatusIcon = "";
-                        break;
-                }
-            }
-            else
+                1 => "Entrega Programada",
+                2 => "Entrega En Curso",
+                3 => "Entrega Finalizada",
+                _ => "Sin Información",
+            };
+        }
+
+        public List<WaterDelivery> GetWaterDeliveriesByStatus(params int[] statuses)
+        {
+            return _context.WaterDeliveries
+                .Where(w => w.OtbId == SelectedOtb
+                            && statuses.Contains(w.DeliveryStatus)
+                            && w.DeliveryDate >= StartOfWeek
+                            && w.DeliveryDate <= EndOfWeek)
+                .ToList();
+        }
+
+        public List<DayOfWeek> GetWorkingDays()
+        {
+            return new List<DayOfWeek>
             {
-                CisternStatusIcon = "";
-            }
+                DayOfWeek.Monday,
+                DayOfWeek.Tuesday,
+                DayOfWeek.Wednesday,
+                DayOfWeek.Thursday,
+                DayOfWeek.Friday
+            };
         }
 
         private string GetTimeSlot(int hour)
         {
-            if (hour >= 6 && hour < 12)
-                return "En la Mañana";
-            else if (hour >= 12 && hour < 18)
-                return "En la Tarde";
-            else
-                return "En la Noche";
+            return hour switch
+            {
+                >= 6 and < 12 => "En la Mañana",
+                >= 12 and < 18 => "En la Tarde",
+                _ => "En la Noche",
+            };
         }
 
-        // Método para devolver la clase CSS según el estado
         private string GetCssClassForStatus(int status)
         {
             return status switch
             {
-                1 => "delivery-scheduled",   // Programada
-                2 => "delivery-in-process",  // En entrega
-                3 => "delivery-completed",   // Pasada
-                _ => "delivery-default",     // Por defecto
+                1 => "delivery-scheduled",
+                2 => "delivery-in-process",
+                3 => "delivery-completed",
+                _ => "delivery-default",
             };
         }
 
         public string GetCurrentWeekRange()
         {
-            return $"{StartOfWeek:dd} - {EndOfWeek:dd}";
+            return $"{StartOfWeek:dd} {StartOfWeek:MMM} - {EndOfWeek:dd} {EndOfWeek:MMM}";
         }
 
         public string GetSpanishDayName(DayOfWeek day)
@@ -144,7 +165,7 @@ namespace CisternasGAMC.Pages.Citizen
             public string Title { get; set; }
             public string DayOfWeek { get; set; }
             public string TimeSlot { get; set; }
-            public string CssClass { get; set; } // Nueva propiedad para la clase CSS
+            public string CssClass { get; set; }
         }
     }
 }

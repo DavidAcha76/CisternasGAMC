@@ -17,7 +17,7 @@ namespace CisternasGAMC.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.8")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -54,6 +54,9 @@ namespace CisternasGAMC.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<short>("OtbId"));
 
+                    b.Property<string>("ChatId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<byte>("District")
                         .HasColumnType("tinyint");
 
@@ -64,6 +67,9 @@ namespace CisternasGAMC.Migrations
                         .IsRequired()
                         .HasMaxLength(60)
                         .HasColumnType("nvarchar(60)");
+
+                    b.Property<string>("UrlTelegram")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("OtbId");
 
@@ -92,6 +98,9 @@ namespace CisternasGAMC.Migrations
                         .IsRequired()
                         .HasMaxLength(40)
                         .HasColumnType("nvarchar(40)");
+
+                    b.Property<short?>("OtbId")
+                        .HasColumnType("smallint");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -129,7 +138,7 @@ namespace CisternasGAMC.Migrations
                     b.Property<byte>("CisternId")
                         .HasColumnType("tinyint");
 
-                    b.Property<float>("DeliveredAmount")
+                    b.Property<float?>("DeliveredAmount")
                         .HasColumnType("real");
 
                     b.Property<DateTime>("DeliveryDate")

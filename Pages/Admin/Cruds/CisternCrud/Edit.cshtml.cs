@@ -50,14 +50,28 @@ namespace CisternasGAMC.Pages.Admin.Cruds.CisternCrud
                 return Page();
             }
 
+            // Verificar si ya existe una cisterna con el mismo número de placa, ignorando la cisterna actual
+            var existingCistern = await _context.Cisterns
+                .FirstOrDefaultAsync(c => c.PlateNumber == Cistern.PlateNumber && c.CisternId != Cistern.CisternId);
+
+            if (existingCistern != null)
+            {
+                // Agregar un mensaje de error al estado del modelo
+                ModelState.AddModelError(string.Empty, "Ya existe una cisterna con este número de placa. Por favor, verifica los datos.");
+                return Page();
+            }
+
+            // Adjuntar y marcar el modelo como modificado
             _context.Attach(Cistern).State = EntityState.Modified;
 
             try
             {
+                // Guardar cambios
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
+                // Verificar si la cisterna aún existe
                 if (!CisternExists(Cistern.CisternId))
                 {
                     return NotFound();
@@ -68,8 +82,16 @@ namespace CisternasGAMC.Pages.Admin.Cruds.CisternCrud
                 }
             }
 
+            // Redirigir a la página de índice
             return RedirectToPage("./Index");
         }
+
+        // Método auxiliar para verificar la existencia de una cisterna
+        private bool CisternExists(int id)
+        {
+            return _context.Cisterns.Any(e => e.CisternId == id);
+        }
+
 
         private bool CisternExists(byte id)
         {

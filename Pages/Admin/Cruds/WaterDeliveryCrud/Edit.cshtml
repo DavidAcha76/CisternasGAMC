@@ -41,7 +41,7 @@
 
                 <div class="form-group">
                     <label asp-for="WaterDelivery.DeliveryDate" class="control-label">Fecha de Entrega</label>
-                    <input asp-for="WaterDelivery.DeliveryDate" class="form-control" />
+                    <input asp-for="WaterDelivery.DeliveryDate" type="date" class="form-control" />
                     <span asp-validation-for="WaterDelivery.DeliveryDate" class="text-danger"></span>
                 </div>
 
@@ -57,7 +57,6 @@
                         <option value="1">Programado</option>
                         <option value="2">En entrega</option>
                         <option value="3">Finalizado</option>
-                        <option value="4">Cancelado</option>
                     </select>
                     <span asp-validation-for="WaterDelivery.DeliveryStatus" class="text-danger"></span>
                 </div>

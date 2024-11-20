@@ -2,51 +2,163 @@
 @model CisternasGAMC.Pages.IndexModel
 @{
     Layout = "_Layout";
-}
 
+    var districts = Model.Districts; // Lista de distritos únicos
+
+
+
+    // Define colores que combinan con azul
+
+    var colors = new[] { "#05c7b9", "#04b5a7", "#03a396", "#019084", "#007e72" };
+}
 <link rel="stylesheet" href="~/css/IndexCitizen.css" />
 <link rel="stylesheet" href="~/css/Citizen/HomeAnimation.css" />
 
 <!-- Loader -->
 <div id="loader" class="loader">
-    <img src="@Url.Content("~/images/FondoAlcaldia.png")" alt="Cargando..."> <!-- Cambia la ruta de la imagen según tu estructura -->
+    <img src="@Url.Content("~/images/Logos/LogoCochabamba.png")" alt="Cargando...">
 </div>
+<!-- Efecto de Onda -->
+<div id="waveEffect" class="wave-effect"></div>
 
 <!-- Main container -->
 <div class="container mt-5">
-    <section class="text-center">
-        <h1 class="display-4 mb-3 text-primary">
-            <strong>Bienvenido</strong>
-            <span class="secondary-text">a Tu Centro Comunitario</span>
-        </h1>
-        <p class="lead">Encuentra tu OTB y revisa las entregas de agua fácilmente.</p>
 
+    <!-- Carrusel de distritos -->
+    <div id="districtCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            @for (int i = 0; i < districts.Count; i++)
+            {
+
+                var district = districts[i];
+
+                var color = colors[i % colors.Length]; // Usa un color de manera cíclica
+
+                <div class="carousel-item @(i == 0 ? "active" : "")">
+                    <div class="d-flex align-items-center justify-content-center" style="height: 50px; cursor: pointer;" onclick="filterOtbs('@district', '@color')">
+                        <div style="background-color: @color; height: 100%; width: 100%; border-radius: 15px;" class="d-flex align-items-center justify-content-center">
+                            <h5 class="distrito-name" style="color: #424f83;">Distrito @district</h5>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#districtCarousel" data-bs-slide="prev" class="btn-purple" style="opacity: 0.5;">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#districtCarousel" data-bs-slide="next" class="btn-purple" style="opacity: 0.5;">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <section class="text-center mt-5">
         <!-- Search Box -->
         <div class="form-group mt-4">
             <input type="text" id="searchBox" class="form-control form-control-lg search-box"
-                   placeholder="Escribe el nombre de tu OTB..." oninput="validateInput()" onkeyup="filterOtbs()">
+                   placeholder="Escribe el nombre de tu OTB..." oninput="validateInput()">
         </div>
-
+        <p class="card-text" style="color:white">Haz clic para ver el calendario de entregas.</p>
         <!-- OTB Cards -->
         <div id="otbContainer" class="row mt-5">
             @foreach (var otb in Model.Otbs)
             {
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card otb-card shadow-lg border-0"
-                         style="background-color: rgba(255, 255, 255, 0.85);"
-                         onclick="goToDetails(@otb.OtbId)"
-                         onmouseover="this.style.cursor='pointer'">
-
-                        <!-- Card Body with Flexbox to center the content -->
+                <div class=" col-md-2 mb-2 otb-card" data-district-id="@otb.District">
+                    <div class="card border-0" style="background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.8)); border-radius: 15px;" onclick="goToDetails(@otb.OtbId)" onmouseover="this.style.cursor='pointer'">
                         <div class="card-body d-flex flex-column align-items-center justify-content-center">
                             <h5 class="card-title">@otb.Name</h5>
-                            <p class="card-text">Haz clic para ver el calendario de entregas.</p>
+
                         </div>
                     </div>
                 </div>
+
             }
         </div>
+        <!-- Contenedor de mensaje "No existe" -->
+        <div id="noResultsMessage" class="text-center mt-5 mx-auto" style="display: none; max-width: 400px; padding: 20px; font-size: 1.5rem; color: #424f83; background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.8)); border-radius: 15px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);">
+            No se encontraron resultados.
+        </div>
+
     </section>
 </div>
+
+
+
 <script src="@Url.Content("~/js/home.js")"></script>
 <script src="~/js/loading.js"></script>
+
+<script>
+    function filterOtbs(district, color) {
+        console.log(`Filtrando OTBs para el distrito: ${district} con color: ${color}`);
+
+        // Activar el efecto de onda
+        const waveEffect = document.getElementById('waveEffect');
+        waveEffect.style.background = color; // Cambia el color de la onda
+        waveEffect.style.transform = 'translate(-50%, -50%) scale(3)'; // Aumenta el tamaño
+        waveEffect.style.opacity = '1'; // Muestra la onda
+
+        // Restablecer la onda después de un tiempo
+        setTimeout(() => {
+            waveEffect.style.transform = 'translate(-50%, -50%) scale(0)'; // Oculta la onda
+            waveEffect.style.opacity = '0'; // Oculta la onda
+        }, 500); // 500ms coincide con la duración de la transición
+
+        const tarjetas = document.querySelectorAll('.otb-card');
+        tarjetas.forEach(tarjeta => {
+            if (tarjeta.dataset.districtId === district) {
+                tarjeta.style.display = 'block'; // Muestra la tarjeta
+                aplicarDegradado(tarjeta, color); // Cambia el degradado al color del distrito
+                tarjeta.classList.add('show'); // Agrega clase para mostrar la animación
+            } else {
+                tarjeta.style.display = 'none'; // Oculta la tarjeta
+                tarjeta.classList.remove('show'); // Remueve clase para ocultar la animación
+            }
+        });
+
+        document.getElementById('searchBox').style.borderColor = color; // Cambia el color del borde
+    }
+
+    // Función para aplicar el degradado
+    function aplicarDegradado(elemento, color) {
+        elemento.style.background = `${color}`; // Aplica el color del distrito
+    }
+
+    // Obtener todas las tarjetas OTB y aplicar el degradado inicial
+    const tarjetas = document.querySelectorAll('.otb-card');
+    tarjetas.forEach(tarjeta => {
+        aplicarDegradado(tarjeta, 'rgb(118 30 197 / 72%)'); // Morado por defecto
+    });
+
+    // Validar entrada en el buscador
+    function validateInput() {
+        const searchTerm = document.getElementById('searchBox').value.toLowerCase();
+        const tarjetas = document.querySelectorAll('.otb-card');
+        let hasVisibleCards = false;
+
+        tarjetas.forEach(tarjeta => {
+            const title = tarjeta.querySelector('.card-title').innerText.toLowerCase();
+            if (title.includes(searchTerm)) {
+                tarjeta.style.display = 'block'; // Muestra la tarjeta
+                hasVisibleCards = true;
+            } else {
+                tarjeta.style.display = 'none'; // Oculta la tarjeta
+            }
+        });
+
+        // Mostrar u ocultar el mensaje de "No existe" y el contenedor de tarjetas
+        const noResultsMessage = document.getElementById('noResultsMessage');
+        const otbContainer = document.getElementById('otbContainer');
+
+        if (!hasVisibleCards) {
+            noResultsMessage.style.display = 'block'; // Muestra el mensaje de "no existe"
+            otbContainer.style.display = 'none'; // Oculta el contenedor de OTBs
+        } else {
+            noResultsMessage.style.display = 'none'; // Oculta el mensaje
+            otbContainer.style.display = 'flex'; // Muestra el contenedor de OTBs
+        }
+    }
+
+
+</script>

@@ -4,8 +4,6 @@
 @{
     ViewData["Title"] = "Editar Usuario";
 
-
-
     Layout = "_LayoutAdmin";
 }
 
@@ -42,16 +40,17 @@
                                 <input asp-for="User.LastName" class="form-control" />
                                 <span asp-validation-for="User.LastName" class="text-danger"></span>
                             </div>
-                            <div class="form-group">
-                                <label asp-for="User.Email">Correo Electrónico</label>
-                                <input asp-for="User.Email" class="form-control" />
-                                <span asp-validation-for="User.Email" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display: none">
                                 <label asp-for="User.Password">Contraseña</label>
-                                <input asp-for="User.Password" type="password" class="form-control" />
+                                <input asp-for="User.Password" class="form-control" />
                                 <span asp-validation-for="User.Password" class="text-danger"></span>
                             </div>
+                            <div class="form-group">
+                                <label asp-for="User.Email">Correo Electrónico</label>
+                                <input asp-for="User.Email" class="form-control"/>
+                                <span asp-validation-for="User.Email" class="text-danger"></span>
+                            </div>
+
                             <div class="form-group">
                                 <label asp-for="User.PhoneNumber">Número de Teléfono</label>
                                 <input asp-for="User.PhoneNumber" class="form-control" />
@@ -63,6 +62,7 @@
                                     <option value="">Seleccione un rol</option>
                                     <option value="admin">Administrador</option>
                                     <option value="driver">Conductor</option>
+                                    <option value="president">Presidente</option>
                                 </select>
                                 <span asp-validation-for="User.Role" class="text-danger"></span>
                             </div>
@@ -76,7 +76,6 @@
                                 </select>
                                 <span asp-validation-for="User.Status" class="text-danger"></span>
                             </div>
-
                         </div>
 
                         <div class="card-footer">
@@ -85,6 +84,41 @@
                         </div>
                     </form>
                 </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h3 class="card-title">Restablecer Contraseña</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <form method="post" asp-page-handler="SendPasswordReset">
+                            <input type="hidden" name="emailReset" value="@Model.User.Email" />
+                            <button type="submit" class="btn btn-warning">Generar nueva contraseña</button>
+                        </form>
+
+                    </div>
+                </div>
+
+                @if (TempData["SuccessMessage"] != null)
+
+                {
+                    <div class="alert alert-success mt-3">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+
+                @if (!ViewData.ModelState.IsValid)
+
+                {
+                    <div class="alert alert-danger mt-3">
+                        <ul>
+                            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+
+                            {
+                                <li>@error.ErrorMessage</li>
+                            }
+                        </ul>
+                    </div>
+                }
             </div>
         </div>
     </div>

@@ -71,6 +71,8 @@ namespace CisternasGAMC.Pages.Admin.Cruds.WaterDeliveryCrud
                         1 => "Programada",
                         2 => "En Proceso",
                         3 => "Finalizada",
+                        4 => "Conforme",
+                        5 => "Denunciada",
                         _ => "Desconocido"
                     };
 

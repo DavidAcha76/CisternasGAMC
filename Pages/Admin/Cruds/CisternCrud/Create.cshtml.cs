@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using CisternasGAMC.Data;
 using CisternasGAMC.Model;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace CisternasGAMC.Pages.Admin.Cruds.CisternCrud
 {
@@ -36,11 +37,25 @@ namespace CisternasGAMC.Pages.Admin.Cruds.CisternCrud
             {
                 return Page();
             }
-            Cistern.Status = 1;
+
+            // Verificar si ya existe una cisterna con el mismo número de placa
+            var existingCistern = await _context.Cisterns
+                .FirstOrDefaultAsync(c => c.PlateNumber == Cistern.PlateNumber);
+
+            if (existingCistern != null)
+            {
+                // Agregar un mensaje de error al estado del modelo
+                ModelState.AddModelError(string.Empty, "Ya existe una cisterna con este número de placa. Por favor, verifica los datos.");
+                return Page();
+            }
+
+            // Establecer el estado inicial y guardar la nueva cisterna
+            Cistern.Status = 1; // Estado inicial de la cisterna
             _context.Cisterns.Add(Cistern);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
         }
+
     }
 }

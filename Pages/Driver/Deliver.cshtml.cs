@@ -5,27 +5,29 @@ using CisternasGAMC.Data;
 using CisternasGAMC.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
+using Microsoft.AspNetCore.Authorization;
+using Telegram.Bot;
 
 namespace CisternasGAMC.Pages.Driver
 {
+    [Authorize(Roles = "driver")]
     public class DeliverModel : PageModel
     {
+        private readonly TelegramBotClient _botClient;
         private readonly ApplicationDbContext _context;
+        private readonly string _telegramToken = "8028273148:AAFH_JfTnfHZxSYDTUTvz-ly9sU8Ls91pSY";
 
-        // Propiedad para almacenar el ID de la entrega de agua
         public int? WaterDeliveryId { get; private set; }
 
-        // Modelo de la entrega de agua vinculado con el formulario
         [BindProperty]
         public WaterDelivery WaterDelivery { get; set; }
 
-        // Constructor que recibe el contexto de la base de datos
-        public DeliverModel(ApplicationDbContext context)
+        public DeliverModel(ApplicationDbContext context, IConfiguration configuration)
         {
+            _botClient = new TelegramBotClient(_telegramToken);
             _context = context;
         }
 
-        // Método para cargar los detalles de la entrega de agua en la página de inicio
         public async Task<IActionResult> OnGetAsync(int? waterDeliveryId)
         {
             if (waterDeliveryId == null)
@@ -44,37 +46,55 @@ namespace CisternasGAMC.Pages.Driver
             return Page();
         }
 
-        // Método para registrar la llegada a la OTB
         public async Task<IActionResult> OnPostSetArrivalAsync(int waterDeliveryId)
         {
-            var delivery = await _context.WaterDeliveries.FirstOrDefaultAsync(d => d.WaterDeliveryId == waterDeliveryId);
+            var delivery = await _context.WaterDeliveries
+                .Include(d => d.Otb) // Incluye la OTB para evitar consultas adicionales
+                .FirstOrDefaultAsync(d => d.WaterDeliveryId == waterDeliveryId);
 
             if (delivery == null)
             {
-                return NotFound("Water delivery not found.");
+                return NotFound("La entrega de agua no fue encontrada.");
+            }
+
+            if (delivery.DeliveryStatus == 2 || delivery.DeliveryStatus == 3)
+            {
+                return RedirectToPage("/Driver/DeliverFinished", new { waterDeliveryId });
             }
 
             delivery.ArrivalDate = DateTime.Now;
-            delivery.DeliveryStatus = 2; // Marcamos como entregado
+            delivery.DeliveryStatus = 2; // Estado de "Llegada"
 
             try
             {
                 await _context.SaveChangesAsync();
+
+                if (delivery.Otb != null && !string.IsNullOrEmpty(delivery.Otb.ChatId))
+                {
+                    string message = $"La cisterna ha llegado a la OTB '{delivery.Otb.Name}' el {DateTime.Now:dd/MM/yyyy HH:mm}.";
+                    await _botClient.SendTextMessageAsync(delivery.Otb.ChatId, message);
+                }
+                else
+                {
+                    Console.WriteLine("La OTB no tiene un ChatId válido para enviar notificaciones.");
+                }
             }
             catch (DbUpdateException ex)
             {
-                return StatusCode(500, $"Error updating the database: {ex.Message}");
+                return StatusCode(500, $"Error actualizando la base de datos: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error enviando mensaje a Telegram: {ex.Message}");
             }
 
-            // Redirige a la página DeliverFinished pasando el waterDeliveryId
             return RedirectToPage("/Driver/DeliverFinished", new { waterDeliveryId });
         }
 
-        // Método para cargar los detalles de la entrega de agua
         private async Task LoadWaterDeliveryAsync()
         {
             WaterDelivery = await _context.WaterDeliveries
-                .Include(wd => wd.Otb)
+                .Include(wd => wd.Otb) // Incluye la información de la OTB relacionada
                 .FirstOrDefaultAsync(wd => wd.WaterDeliveryId == WaterDeliveryId);
         }
     }

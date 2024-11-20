@@ -22,8 +22,7 @@
         <!-- Navbar -->
         <nav class="navbar navbar-expand navbar-dark">
             <a href="@Url.Page("/Index")" class="navbar-brand">
-                <img src="@Url.Content("~/images/Logos/LogoCochabamba.png")" alt="Logo CisternasGAMC" class="brand-image img-circle" style="max-height: 40px; opacity: .8">
-                <span>CisternasGAMC</span>
+                <img src="@Url.Content("~/images/Logos/CochaLogo.png")" alt="Logo CisternasGAMC" class="brand-image" style="max-height: 40px">
             </a>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item nav-user">
@@ -52,11 +51,15 @@
                 {
                     if (User.IsInRole("admin"))
                     {
-                        <a href="/Admin/Index" class="nav-link text-white pe-3">Panel Admin</a>
+                        <a href="/Admin/Index" class="nav-link text-white pe-3">Panel Administrador</a>
                     }
                     else if (User.IsInRole("driver"))
                     {
-                        <a href="/driver/Index" class="nav-link text-white pe-3">Panel Driver</a>
+                        <a href="/driver/Index" class="nav-link text-white pe-3">Panel Conductor</a>
+                    }
+                    else if (User.IsInRole("president"))
+                    {
+                        <a href="/president/Index" class="nav-link text-white pe-3">Panel Presidente</a>
                     }
 
                     <!-- Botón que activa el modal de logout -->

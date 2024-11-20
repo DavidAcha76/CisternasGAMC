@@ -20,5 +20,11 @@ namespace CisternasGAMC.Model
 
         [Required(ErrorMessage = "El distrito es obligatorio.")]
         public byte District { get; set; }
+
+        public string? ChatId { get; set; }
+        public string? UrlTelegram { get; set; }
+
+
+
     }
 }

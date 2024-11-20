@@ -15,13 +15,10 @@ html[b-8t99jayboj], body[b-8t99jayboj] {
     flex: 1;
     padding: 20px;
 }
-.text-primary[b-8t99jayboj] {
-    color: #92b3d7 !important
-}
 /* Estilo para la barra de navegación */
 .navbar[b-8t99jayboj] {
-    background-color: #73D4E7;
-    padding: 10px 20px;
+    background-color: #4AC1E0;
+    padding: 5px 15px;
 }
 
     .navbar .navbar-brand[b-8t99jayboj] {
@@ -150,10 +147,9 @@ html[b-vc3vogv128], body[b-vc3vogv128] {
     padding: 20px;
 }
 
-/* Estilo para la barra de navegación */
 .navbar[b-vc3vogv128] {
-    background-color: #0077cc;
-    padding: 10px 20px;
+    background-color: #4AC1E0;
+    padding: 5px 15px;
 }
 
     .navbar .navbar-brand[b-vc3vogv128] {

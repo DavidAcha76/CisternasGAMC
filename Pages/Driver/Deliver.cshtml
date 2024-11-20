@@ -4,17 +4,14 @@
     Layout = "_LayoutDriver";
 }
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-
 <style>
-    body {
-        background-color: #f8f9fa;
-    }
+
 
     .form-container {
         max-width: 500px;
         margin: 3rem auto;
         padding: 2rem;
-        background-color: white;
+        background-color: rgba(77, 7, 140, 0.8); /* Fondo semi-transparente */
         border-radius: 0.5rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
@@ -23,13 +20,22 @@
             text-align: center;
             margin-bottom: 1.5rem;
             font-weight: bold;
+            color: white; /* Color del texto del título */
         }
 
     .btn-primary {
         width: 100%;
         font-size: 1.2rem;
         padding: 0.75rem;
+        background-color: #EA547C; /* Nuevo color del botón */
+        border-color: #EA547C; /* Color del borde del botón */
+        color: white; /* Color del texto del botón */
     }
+
+        .btn-primary:hover {
+            background-color: #d0416a; /* Color al pasar el ratón por encima */
+            border-color: #d0416a; /* Color del borde al pasar el ratón por encima */
+        }
 </style>
 
 <div class="container">

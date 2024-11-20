@@ -11,23 +11,21 @@ namespace CisternasGAMC.Pages
     {
         private readonly ApplicationDbContext _context;
 
-        // Propiedades para enlazar los datos
         [BindProperty]
-        public int? SelectedOtb { get; set; } // Cambiado a int
+        public int? SelectedOtb { get; set; }
 
         public IList<Otb> Otbs { get; set; } = new List<Otb>();
+        public IList<byte> Districts { get; set; } = new List<byte>(); // Lista de distritos únicos
 
-        // Constructor que recibe el contexto de la base de datos
         public IndexModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // Método que se ejecuta al cargar la página
         public void OnGet()
         {
-            // Cargar todos los OTBs al cargar la página por primera vez
             LoadOtbs();
+            LoadUniqueDistricts(); // Carga distritos únicos al cargar la página
         }
 
         private void LoadOtbs()
@@ -35,10 +33,20 @@ namespace CisternasGAMC.Pages
             Otbs = _context.Otbs.ToList();
         }
 
-        public JsonResult OnGetOtbs()
+        private void LoadUniqueDistricts()
+        {
+            // Recolectar distritos únicos
+            Districts = _context.Otbs
+                .Select(o => o.District) // Asegúrate de que este sea el nombre del atributo
+                .Distinct()
+                .ToList();
+        }
+
+        public JsonResult OnGetOtbsByDistrict(int districtId)
         {
             var filteredOtbs = _context.Otbs
-                .Select(o => new { o.OtbId, o.Name }) // Asegúrate de devolver estas propiedades
+                .Where(o => o.District == districtId)
+                .Select(o => new { o.OtbId, o.Name })
                 .ToList();
 
             return new JsonResult(filteredOtbs);

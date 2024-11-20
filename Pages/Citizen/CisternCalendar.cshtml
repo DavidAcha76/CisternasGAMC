@@ -6,66 +6,305 @@
 @section Styles {
     <link rel="stylesheet" href="~/css/Calendar.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        /* Archivo: Calendar.css */
+
+        /* Estilo personalizado para botones */
+        .btn-share {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #fff;
+            background-color: #28a745;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .btn-share:hover {
+                background-color: #218838;
+            }
+
+            .btn-share i {
+                margin-right: 8px;
+            }
+    </style>
 }
 
-<!-- Main container -->
+<!-- Contenedor principal del calendario -->
 <div class="container my-5">
     <section class="text-center">
-        <h1 class="display-4 mb-3 text-primary">
-            <strong>Entregas de Agua</strong>
-            <span class="secondary-text">para @Model.NombreOTB</span>
-        </h1>
-        <p class="lead text-white">Consulta el estado de las entregas de agua programadas para tu comunidad.</p>
-
-
-        <!-- Weekly Planner -->
-        <div class="weekly-planner">
-            <div class="planner-header text-center">Semana @Model.GetCurrentWeekRange()</div>
-            <div class="row text-center mt-4">
-                @foreach (var day in Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>())
-                {
-                    var deliveriesForDay = Model.CalendarEvents
-                    .Where(e => e.DayOfWeek == day.ToString())
-                    .ToList();
-
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3 d-flex justify-content-between">
-                        <div class="planner-day">@Model.GetSpanishDayName(day)</div>
-                        <div class="planner-task @deliveriesForDay.FirstOrDefault()?.CssClass">
-                            @if (deliveriesForDay.Any())
-                            {
-                                var status = deliveriesForDay.First().Title;
-                                @if (status == "1")
-                                {
-                                    <i class="bi bi-droplet animate-icon"></i>
-                                    <span>Programada</span>
-                                }
-                                else if (status == "2")
-                                {
-                                    <i class="bi bi-truck animate-icon"></i>
-                                    <span>En entrega</span>
-                                }
-                                else if (status == "3")
-                                {
-                                    <i class="bi bi-check-circle animate-icon"></i>
-                                    <span>Pasada</span>
-                                }
-                            }
-                            else
-                            {
-                                <i class="bi bi-slash-circle"></i>
-                                <span></span> <!-- Día sin eventos -->
-                            }
-                        </div>
-                    </div>
-                }
+        <!-- Contenedor del calendario para dispositivos web -->
+        <div id="calendar-content-web" class="weekly-planner card card-primary">
+            <!-- Encabezado del calendario -->
+            <div class="transparent-container">
+                <h4 class="display-6 mb-3 delivery-header secondary-text">
+                    @Model.NombreOTB
+                </h4>
+                <h3 class="display-6 mb-3 delivery-header secondary-text">
+                    @Model.GetCurrentWeekRange()
+                </h3>
             </div>
 
+            <!-- Contenido del calendario en una cuadrícula de Bootstrap -->
+            <div class="card-body" style="padding:50px">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead style="background: #a1e4ff;">
+                            <tr>
+                                <!-- Generar columnas para cada día de la semana -->
+                                @foreach (var day in Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>()
+                                .Where(d => d != DayOfWeek.Saturday && d != DayOfWeek.Sunday))
 
+                                {
+                                    <th class="text-center">
+                                        @Model.GetSpanishDayName(day)
+                                    </th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- Generar filas de días con eventos en lugar de checkboxes -->
+                                @foreach (var day in Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>()
+                                .Where(d => d != DayOfWeek.Saturday && d != DayOfWeek.Sunday))
+
+                                {
+                                    <td class="text-center">
+                                        <!-- Lista de eventos para el día -->
+                                        <div class="events-container">
+                                            @foreach (var delivery in Model.CalendarEvents
+                                           .Where(e => e.DayOfWeek == day.ToString()).ToList())
+
+                                            {
+                                                <div class="event-item mt-2 p-2 @delivery.CssClass">
+                                                    @if (delivery.Title == "1")
+
+                                                    {
+                                                        <span class="badge badge-warning">
+                                                            <i class="fas fa-tint animate-icon"></i> Programada
+                                                        </span>
+                                                    }
+
+                                                    else if (delivery.Title == "2")
+
+                                                    {
+                                                        <span class="badge badge-primary">
+                                                            <i class="fas fa-truck animate-icon"></i> En entrega
+                                                        </span>
+                                                    }
+
+                                                    else if (delivery.Title == "3")
+
+                                                    {
+                                                        <span class="badge badge-success">
+                                                            <i class="fas fa-check-circle animate-icon"></i> Pasada
+                                                        </span>
+                                                    }
+                                                </div>
+                                            }
+
+                                            <!-- Icono para indicar día sin eventos -->
+                                            @if (!Model.CalendarEvents.Any(e => e.DayOfWeek == day.ToString()))
+
+                                            {
+                                                <div class="event-item p-2">
+                                                    <span class="badge badge-secondary">
+                                                        <i class="fas fa-times-circle"></i> Sin eventos
+                                                    </span>
+                                                </div>
+                                            }
+                                        </div>
+                                    </td>
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Texto de entregas programadas -->
+            <div class="TextoEntrega" style="font-size: 20px; padding-bottom: 25px">
+                @if (!string.IsNullOrEmpty(Model.ProgrammedDeliveriesMessage))
+
+                {
+                    <span>@Model.ProgrammedDeliveriesMessage</span>
+                }
+
+                else
+
+                {
+                    <span>No hay entregas programadas para esta semana.</span>
+                }
+            </div>
         </div>
+
+
+
+
+        <!-- Contenedor del calendario para dispositivos móviles -->
+        <div id="calendar-content-mobile" class="weekly-planner d-block d-md-none">
+            <div class="transparent-container">
+                <h4 class="display-6 mb-3 delivery-header secondary-text">
+                    @Model.NombreOTB
+                </h4>
+                <h3 class="display-6 mb-3 delivery-header secondary-text">
+                    @Model.GetCurrentWeekRange()
+                </h3>
+            </div>
+            <!-- Contenido del calendario en una cuadrícula de Bootstrap -->
+            <div class="card-body">
+                <div class="row">
+                    <!-- Generar columnas para cada día de la semana -->
+                    @foreach (var day in Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>()
+                    .Where(d => d != DayOfWeek.Saturday && d != DayOfWeek.Sunday))
+
+                    {
+                        <div class="col-12 col-sm-6 col-md-4 ">
+                            <!-- Contenedor de cada día -->
+                            <div class="info-box bg-light shadow-sm">
+                                <span class="info-box-icon bg-info elevation-1">
+                                    <i class="fas fa-calendar-day"></i>
+                                </span>
+                                <div class="info-box-content">
+                                    <!-- Nombre del día en español -->
+                                    <span class="info-box-text font-weight-bold">
+                                        @Model.GetSpanishDayName(day)
+                                    </span>
+                                    <!-- Lista de eventos para el día -->
+                                    <div class="events-container">
+                                        @foreach (var delivery in Model.CalendarEvents
+                                       .Where(e => e.DayOfWeek == day.ToString()).ToList())
+
+                                        {
+                                            <div class="event-item mt-2 p-2 @delivery.CssClass">
+                                                @if (delivery.Title == "1")
+
+                                                {
+                                                    <span class="badge badge-warning">
+                                                        <i class="fas fa-tint animate-icon"></i> Programada
+                                                    </span>
+                                                }
+
+                                                else if (delivery.Title == "2")
+
+                                                {
+                                                    <span class="badge badge-primary">
+                                                        <i class="fas fa-truck animate-icon"></i> En entrega
+                                                    </span>
+                                                }
+
+                                                else if (delivery.Title == "3")
+
+                                                {
+                                                    <span class="badge badge-success">
+                                                        <i class="fas fa-check-circle animate-icon"></i> Pasada
+                                                    </span>
+                                                }
+                                            </div>
+                                        }
+
+                                        <!-- Icono para indicar día sin eventos -->
+                                        @if (!Model.CalendarEvents.Any(e => e.DayOfWeek == day.ToString()))
+
+                                        {
+                                            <div class="event-item p-2">
+                                                <span class="badge badge-secondary">
+                                                    <i class="fas fa-times-circle"></i> Sin eventos
+                                                </span>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- Texto de entregas programadas -->
+            <div class="TextoEntrega" style="font-size: 20px; padding-bottom: 25px">
+                @if (!string.IsNullOrEmpty(Model.ProgrammedDeliveriesMessage))
+
+                {
+                    <span>@Model.ProgrammedDeliveriesMessage</span>
+                }
+
+                else
+
+                {
+                    <span>No hay entregas programadas para esta semana.</span>
+                }
+            </div>
+        </div>
+        <!-- Botón para retroceder -->
+        <button onclick="history.back()" class="btn-share mt-4" style="background-color: #007bff;">
+            <i class="bi bi-arrow-left-circle"></i> Retroceder
+        </button>
+
+        <!-- Botón para acceder al grupo de Telegram -->
+        <button onclick="window.open('@Model.UrlTelegram', '_blank')" class="btn-share mt-4" style="background-color: #007bff;">
+            <i class="bi bi-telegram"></i> Grupo de Telegram
+        </button>
+
+
+        <!-- Botón para capturar y compartir el calendario -->
+        <button id="capture-share-btn" class="btn-share mt-4">
+            <i class="bi bi-share-fill"></i> Capturar y Compartir Calendario
+        </button>
 
     </section>
 </div>
 
+
+
+<!-- Cargar html2canvas desde CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 <script>
-    src = "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" >
+    document.getElementById('capture-share-btn').addEventListener('click', function () {
+        // Seleccionar el área del calendario, verificando si está en la vista web o móvil
+        const calendarContentWeb = document.getElementById('calendar-content-web');
+        const calendarContentMobile = document.getElementById('calendar-content-mobile');
+        const calendarContent = calendarContentWeb || calendarContentMobile;
+
+        if (!calendarContent) {
+            console.error('No se encontró el contenido del calendario.');
+            alert("Error: No se pudo encontrar el contenido del calendario.");
+            return;
+        }
+
+        // Capturar el área seleccionada como una imagen
+        html2canvas(calendarContent).then(canvas => {
+            canvas.toBlob(function (blob) {
+                // Verificar si el navegador soporta la API de compartir
+                if (navigator.share) {
+                    const file = new File([blob], "calendario.png", { type: "image/png" });
+                    navigator.share({
+                        files: [file],
+                        title: 'Calendario de Entregas de Agua',
+                        text: 'Mira el calendario de entregas de agua para esta semana.',
+                    }).then(() => {
+                        console.log('Compartido exitosamente');
+                    }).catch((error) => {
+                        console.error('Error al compartir:', error);
+                        alert("Error al intentar compartir el calendario.");
+                    });
+                } else {
+                    // Descargar la imagen si el navegador no soporta la API de compartir
+                    alert("La función de compartir no es compatible con este dispositivo. La imagen será descargada.");
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL("image/png");
+                    link.download = "calendario.png";
+                    link.click();
+                }
+            });
+        }).catch(error => {
+            console.error('Error al capturar el calendario:', error);
+            alert("Ocurrió un error al generar la imagen del calendario.");
+        });
+    });
 </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

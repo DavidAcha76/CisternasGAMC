@@ -1,0 +1,99 @@
+﻿body {
+    background-color: #d4f1f9;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+/* Sección del formulario de la OTB */
+.form-section {
+    background-color: #618a8e; /* Color de fondo de la sección */
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+    color: white; /* Color del texto */
+}
+
+    .form-section h2 {
+        margin-bottom: 20px;
+        color: white; /* Color del texto del título */
+        background-color: #004d73; /* Fondo del título */
+        padding: 10px; /* Espaciado interno para el título */
+        border-radius: 5px; /* Esquinas redondeadas del fondo */
+    }
+
+    .form-section select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: none;
+    }
+
+/* Sección del switch (conmutador) */
+.toggle-section {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 32px;
+}
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+
+input:checked + .slider {
+    background-color: #004d73; /* Mismo azul que el fondo del título */
+}
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+/* Botón general */
+.btn {
+    padding: 10px 20px;
+    background-color: #004d73; /* Mismo azul que el fondo del título */
+    color: white; /* Color del texto del botón */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -27,13 +27,17 @@ namespace CisternasGAMC.Model
         [Required(ErrorMessage = "Password es obligatorio.")]
         public string Password { get; set; } = string.Empty;
 
-        [StringLength(8, ErrorMessage = "El teléfono debe tener exactamente 8 caracteres.")]
-        [Required(ErrorMessage = "PhoneNumber es obligatorio.")]
+        [Required(ErrorMessage = "El número de teléfono es obligatorio.")]
+        [RegularExpression(@"^[67]\d{7}$", ErrorMessage = "El número de teléfono debe comenzar con 6 o 7 y tener exactamente 8 dígitos.")]
         public string PhoneNumber { get; set; } = string.Empty;
+
 
         public string Role { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "El estado es obligatorio.")]
         public byte Status { get; set; }
+
+        [ForeignKey(nameof(Otb))]
+        public short? OtbId { get; set; }
     }
 }

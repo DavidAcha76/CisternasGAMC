@@ -3,7 +3,6 @@
 
 @{
     ViewData["Title"] = "Crear Entrega";
-
     Layout = "_LayoutAdmin";
 }
 
@@ -19,14 +18,16 @@
                 <div class="card-body">
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
+                    <!-- Selector de Cisterna -->
                     <div class="form-group">
-                        <label asp-for="WaterDelivery.CisternId" class="control-label">Numero de placa de Cisterna</label>
+                        <label asp-for="WaterDelivery.CisternId" class="control-label">Número de placa de Cisterna</label>
                         <select asp-for="WaterDelivery.CisternId" class="form-control" asp-items="Model.Cisterns" required>
                             <option value="">-- Seleccione una cisterna --</option>
                         </select>
                         <span asp-validation-for="WaterDelivery.CisternId" class="text-danger"></span>
                     </div>
 
+                    <!-- Selector de Conductor -->
                     <div class="form-group">
                         <label asp-for="WaterDelivery.DriverId" class="control-label">Nombre Conductor</label>
                         <select asp-for="WaterDelivery.DriverId" class="form-control" asp-items="Model.Drivers" required>
@@ -35,19 +36,27 @@
                         <span asp-validation-for="WaterDelivery.DriverId" class="text-danger"></span>
                     </div>
 
+                    <!-- Campo de búsqueda y dropdown de OTB -->
                     <div class="form-group">
-                        <label asp-for="WaterDelivery.OtbId" class="control-label">Elija la OTB</label>
-                        <select asp-for="WaterDelivery.OtbId" class="form-control" asp-items="Model.Otbs" required>
-                            <option value="">-- Seleccione una OTB --</option>
-                        </select>
+                        <label for="otb-combobox">Buscar y seleccionar OTB</label>
+                        <div class="dropdown">
+                            <input type="text" id="otb-combobox" class="form-control" placeholder="Buscar OTB..." oninput="filterOtbs()" onclick="toggleDropdown()">
+                            <div id="otb-dropdown" class="dropdown-content">
+                                <select id="otb-select" asp-for="WaterDelivery.OtbId" class="form-control" asp-items="Model.Otbs" size="5" onclick="selectOption(this)">
+                                    <option value="">-- Seleccione una OTB --</option>
+                                </select>
+                            </div>
+                        </div>
                         <span asp-validation-for="WaterDelivery.OtbId" class="text-danger"></span>
                     </div>
 
+                    <!-- Fecha de entrega -->
                     <div class="form-group">
                         <label asp-for="WaterDelivery.DeliveryDate" class="control-label">Fecha de Entrega</label>
-                        <input asp-for="WaterDelivery.DeliveryDate" class="form-control" required />
+                        <input asp-for="WaterDelivery.DeliveryDate" type="date" class="form-control" required />
                         <span asp-validation-for="WaterDelivery.DeliveryDate" class="text-danger"></span>
                     </div>
+
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Crear</button>
@@ -56,6 +65,70 @@
         </div>
     </div>
 </div>
+
+<style>
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f6f6f6;
+        width: 100%;
+        border: 1px solid #ddd;
+        z-index: 1;
+    }
+
+    .show {
+        display: block;
+    }
+
+    #otb-select {
+        width: 100%;
+        border: none;
+        outline: none;
+    }
+</style>
+
+<script>
+    function toggleDropdown() {
+        document.getElementById("otb-dropdown").classList.toggle("show");
+    }
+
+    function filterOtbs() {
+        var input = document.getElementById("otb-combobox");
+        var filter = input.value.toUpperCase();
+        var select = document.getElementById("otb-select");
+        var options = select.getElementsByTagName("option");
+
+        for (var i = 1; i < options.length; i++) { // Empieza en 1 para omitir la primera opción
+            var txtValue = options[i].textContent || options[i].innerText;
+            options[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+        }
+    }
+
+    function selectOption(selectElement) {
+        var selectedOption = selectElement.options[selectElement.selectedIndex];
+        document.getElementById("otb-combobox").value = selectedOption.text;
+        toggleDropdown();
+    }
+
+    // Cierra el dropdown si se hace clic fuera de él
+    window.onclick = function (event) {
+        if (!event.target.matches('#otb-combobox')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            for (var i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+    }
+</script>
 
 @section Scripts {
     @{

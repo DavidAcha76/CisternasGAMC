@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Services\**" />
+    <Compile Remove="wwwroot\NewFolder\**" />
+    <Content Remove="Services\**" />
+    <Content Remove="wwwroot\NewFolder\**" />
+    <EmbeddedResource Remove="Services\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder\**" />
+    <None Remove="Services\**" />
+    <None Remove="wwwroot\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="wwwroot\js\distritos.js" />
   </ItemGroup>
 
@@ -18,8 +29,6 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Services\" />
-    <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -75,6 +84,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
+    <PackageReference Include="Telegram.Bot" Version="22.0.0" />
     <PackageReference Include="WebPush" Version="1.0.12" />
   </ItemGroup>
 

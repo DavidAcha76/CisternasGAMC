@@ -10,7 +10,7 @@
     <div class="login-box">
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
-                <a href="#" class="h1"><b>Login</b></a>
+                <p href="#" class="h1"><b>Login</b></p>
             </div>
             <div class="card-body">
                 <form method="post">
@@ -43,7 +43,10 @@
                         </div>
                     </div>
                 </form>
-                @ViewData["Message"]
+                <div style="color: red;">
+                    @ViewData["Message"]
+                </div>
+
                 <!-- Enlace para abrir el modal de restablecimiento de contraseña -->
                 <p class="mb-1 mt-2 text-center">
                     <a href="#" data-toggle="modal" data-target="#forgotPasswordModal">Olvidé mi contraseña</a>

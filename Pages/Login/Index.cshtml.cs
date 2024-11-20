@@ -70,32 +70,42 @@ namespace CisternasGAMC.Pages.Login
 
             if (user != null)
             {
-                //if (BCrypt.Net.BCrypt.Verify(Password, user.Password))
+                if (BCrypt.Net.BCrypt.Verify(Password, user.Password))
                 {
-                    // Resetea los intentos fallidos
-                    ResetFailedAttempts(ipAddress);
+                    if (user.Status == 1)
+                    {
+                        // Resetea los intentos fallidos
+                        ResetFailedAttempts(ipAddress);
 
-                    var claims = new List<Claim>
+                        var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name, user.FirstName + " " + user.LastName),
                         new Claim(ClaimTypes.Role, user.Role ?? "admin"),
                         new Claim(ClaimTypes.Email, user.Email),
-                        new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString())
+                        new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                        new Claim(ClaimTypes.Country, user.OtbId.HasValue ? user.OtbId.Value.ToString() : "0")
+
                     };
 
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
 
-                    if (user.Role == "admin")
-                    {
-                        return RedirectToPage("/Admin/Index");
+                        if (user.Role == "admin")
+                        {
+                            return RedirectToPage("/Admin/Index");
+                        }
+                        else if (user.Role == "driver")
+                        {
+                            return RedirectToPage("/driver/Index");
+                        }
+                        else if (user.Role == "president")
+                        {
+                            return RedirectToPage("/president/Index");
+                        }
                     }
-                    else if (user.Role == "driver")
-                    {
-                        return RedirectToPage("/driver/Index");
-                    }
+                    
                 }
             }
 
@@ -176,18 +186,18 @@ namespace CisternasGAMC.Pages.Login
 
             const string subject = "Tu nueva contraseña";
             string body = $@"
-    <div style='font-family: Arial, sans-serif; color: #333;'>
-        <h2 style='color: #4CAF50;'>Tu nueva contraseña ha sido generada</h2>
-        <p>Hola,</p>
-        <p>Nos complace informarte que tu nueva contraseña ha sido creada con éxito:</p>
-        <div style='background-color: #f2f2f2; padding: 10px; margin: 10px 0; border-radius: 5px;'>
-            <p style='font-size: 18px; color: #333; text-align: center;'><b>{nuevaContraseña}</b></p>
-        </div>
-        <p>Por favor, <a href='#' style='color: #4CAF50;'>inicia sesión</a> y asegúrate de cambiarla por una que recuerdes.</p>
-        <p>Si no solicitaste este cambio, por favor ponte en contacto con nuestro equipo de soporte inmediatamente.</p>
-        <br>
-        <p>Gracias por confiar en nosotros.</p>
-        <p><strong>Equipo de CisternasGAMC</strong></p>
+    <div style=""font-family: Arial, sans-serif; color: #019084;"">
+    <h2 style=""color: #05c7b9;"">Tu nueva contraseña ha sido generada</h2>
+    <p>Hola,</p>
+    <p>Nos complace informarte que tu nueva contraseña ha sido creada con éxito:</p>
+    <div style=""background-color: #03a396; padding: 10px; margin: 10px 0; border-radius: 5px; color: #fff;"">
+    <p style=""font-size: 18px; text-align: center; font-weight: bold;"">{nuevaContraseña}</p>
+    </div>
+    <p>Por favor, <a href=""#"" style=""color: #05c7b9; text-decoration: none;"">inicia sesión</a> y asegúrate de cambiarla por una que recuerdes.</p>
+    <p>Si no solicitaste este cambio, por favor ponte en contacto con nuestro equipo de soporte inmediatamente.</p>
+    <br>
+    <p>Gracias por confiar en nosotros.</p>
+    <p><strong style=""color: #007e72;"">Equipo de CisternasGAMC</strong></p>
     </div>";
 
             using (var smtp = new SmtpClient

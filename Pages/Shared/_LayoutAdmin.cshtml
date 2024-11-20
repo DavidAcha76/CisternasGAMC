@@ -49,51 +49,40 @@
                 <!-- Main Menu -->
                 <nav class="mt-2" aria-label="Menú principal de navegación">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Opción de Cisternas -->
                         <li class="nav-item">
                             <a href="@Url.Page("/Admin/Cruds/CisternCrud/index")" class="nav-link" aria-label="Dashboard de Cisternas">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>Cisternas</p>
                             </a>
                         </li>
-
-                        <!-- Opción de OTB -->
                         <li class="nav-item">
                             <a href="@Url.Page("/Admin/Cruds/OtbCrud/index")" class="nav-link" aria-label="Comunidades OTB">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>OTB</p>
                             </a>
                         </li>
-
-                        <!-- Opción de Usuarios -->
                         <li class="nav-item">
                             <a href="@Url.Page("/Admin/Cruds/UserCrud/index")" class="nav-link" aria-label="Gestión de usuarios">
                                 <i class="nav-icon fas fa-user-edit"></i>
                                 <p>Usuarios</p>
                             </a>
                         </li>
-
-                        <!-- Opción de Entregas -->
                         <li class="nav-item">
                             <a href="@Url.Page("/Admin/Cruds/WaterDeliveryCrud/index")" class="nav-link" aria-label="Gestión de entregas">
                                 <i class="nav-icon fas fa-shipping-fast"></i>
                                 <p>Entregas</p>
                             </a>
                         </li>
-
-                        <!-- Opción para Generar Entrega -->
                         <li class="nav-item">
                             <a href="@Url.Page("/Admin/Cruds/WaterDeliveryCrud/Create")" class="nav-link" aria-label="Generar nueva entrega">
                                 <i class="nav-icon fas fa-plus-circle"></i>
                                 <p>Generar entrega</p>
                             </a>
                         </li>
-
-                        <!-- Opción para Reportes -->
                         <li class="nav-item">
-                            <a href="@Url.Page("/Admin/Report/index")" class="nav-link" aria-label="Generar reportes">
-                                <i class="nav-icon fas fa-chart-bar"></i>
-                                <p>Reportes</p>
+                            <a href="@Url.Page("/Admin/Cruds/WaterDeliveryCrud/CreatePro")" class="nav-link" aria-label="Generar Entrega Avanzada">
+                                <i class="nav-icon fas fa-plus-circle"></i>
+                                <p>Generar Entrega Avanzada</p>
                             </a>
                         </li>
                     </ul>
@@ -110,13 +99,42 @@
             </section>
         </div>
 
-        <!-- Footer -->
         <footer class="main-footer">
             <strong>&copy; 2024 - CisternasGAMC</strong> - Todos los derechos reservados.
             <div class="float-right d-none d-sm-inline-block">
                 <b>Versión</b> 1.0.0
+                <!-- Botón para abrir el modal de créditos -->
+                <button type="button" class="btn btn-link text-dark" data-toggle="modal" data-target="#creditsModal">
+                    Créditos
+                </button>
             </div>
         </footer>
+
+        <!-- Modal de Créditos -->
+        <div class="modal fade" id="creditsModal" tabindex="-1" role="dialog" aria-labelledby="creditsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="creditsModalLabel">Créditos del Proyecto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Líder de equipo:</strong> David Acha Gandarillas</p>
+                        <p><strong>Desarrolladores:</strong></p>
+                        <ul>
+                            <li>Manuel Monegro Vargas</li>
+                            <li>Sebastian Mendieta</li>
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Modal de detalles del usuario -->
@@ -139,8 +157,6 @@
             </div>
         </div>
     </div>
-
-    
 
     <!-- Modal de confirmación de logout -->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel" aria-hidden="true">
@@ -170,13 +186,9 @@
     <!-- Script para gestionar los mensajes y limpiar campos -->
     <script>
         $(document).ready(function () {
-            // Verificamos si hay un mensaje de error en TempData
             var hasError = '@TempData["Message"]' !== '';
             if (hasError) {
-                // Mostrar el modal de nuevo si hay error
                 $('#changePasswordModal').modal('show');
-
-                // Limpiar los campos de contraseña si el error es de contraseñas
                 var errorField = '@TempData["ErrorField"]';
                 if (errorField === "OldPassword") {
                     $('#oldPassword').val('');
@@ -189,19 +201,14 @@
         });
     </script>
 
-
     <!-- Scripts -->
     <script src="@Url.Content("~/lib/jquery/jquery.min.js")"></script>
     <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")"></script>
     <script src="@Url.Content("~/js/adminlte.js")"></script>
-    <script src="@Url.Content("~/lib/jquery/jquery.min.js")" asp-append-version="true"></script>
-    <script src="@Url.Content("~/lib/bootstrap/js/bootstrap.bundle.min.js")" asp-append-version="true"></script>
-    <script src="@Url.Content("~/js/adminlte.js")" asp-append-version="true"></script>
     <script src="@Url.Content("~/js/distritos.js")" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js"></script> <!-- Agrega esto para soporte de idiomas si es necesario -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/locales-all.min.js"></script>
     @RenderSection("Scripts", required: false)
-
 </body>
 
 </html>

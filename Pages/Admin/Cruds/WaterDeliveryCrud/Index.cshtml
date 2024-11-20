@@ -1,67 +1,96 @@
 ﻿@page
 @model CisternasGAMC.Pages.Admin.Cruds.WaterDeliveryCrud.IndexModel
-
 @{
     ViewData["Title"] = "Entregas de Agua";
+
     Layout = "_LayoutAdmin";
 }
 
 <div class="container-fluid">
     <h1 class="mt-4">Entregas de Agua</h1>
 
-    <div class="card mb-4">
-        <div class="card-header">
-            <a asp-page="Create" class="btn btn-primary">Registrar entrega</a>
-        </div>
-        <div class="card-header">
-            @* Botón para generar el archivo Excel *@
-            <form method="post" asp-page-handler="ExportToExcel">
-                <button type="submit" class="btn btn-success">Generar Excel</button>
-            </form>
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0">Lista de Entregas de Agua</h5>
+            <div>
+                <a asp-page="./Create" class="btn btn-primary btn-sm">Registrar entrega</a>
+                <form method="post" asp-page-handler="ExportToExcel" class="d-inline">
+                    <button type="submit" class="btn btn-success btn-sm">Generar Excel</button>
+                </form>
+            </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Cisterna</th>
-                        <th>Conductor</th>
-                        <th>OTB</th>
-                        <th>Fecha de entrega</th>
-                        <th>Monto entregado</th>
-                        <th>Estado entrega</th>
-                        <th>Entrega iniciada el</th>
-                        <th>Entrega completada el</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.WaterDelivery)
-                    {
-                        var estado = item.DeliveryStatus switch
-                        {
-                            1 => "Programada",
-                            2 => "En Proceso",
-                            3 => "Finalizada",
-                            _ => "Desconocido"
-                        };
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="thead-dark">
                         <tr>
-                            <td>@item.Cistern.PlateNumber</td>
-                            <td>@($"{item.Driver.FirstName} {item.Driver.LastName}")</td>
-                            <td>@item.Otb.Name</td>
-                            <td>@item.DeliveryDate.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>@item.DeliveredAmount</td>
-                            <td>@estado</td>
-                            <td>@(item.ArrivalDate.HasValue ? item.ArrivalDate.Value.ToString("dd/MM/yyyy HH:mm") : "N/A")</td>
-                            <td>@(item.DepartureDate.HasValue ? item.DepartureDate.Value.ToString("dd/MM/yyyy HH:mm") : "N/A")</td>
-                            <td>
-                                <a asp-page="./Edit" asp-route-id="@item.WaterDeliveryId" class="btn btn-warning btn-sm">Editar</a>
-                                <a asp-page="./Details" asp-route-id="@item.WaterDeliveryId" class="btn btn-info btn-sm">Detalles</a>
-                                <a asp-page="./Delete" asp-route-id="@item.WaterDeliveryId" class="btn btn-danger btn-sm">Eliminar</a>
-                            </td>
+                            <th>Cisterna</th>
+                            <th>Conductor</th>
+                            <th>OTB</th>
+                            <th>Fecha de entrega</th>
+                            <th>Monto entregado</th>
+                            <th>Estado entrega</th>
+                            <th>Entrega iniciada el</th>
+                            <th>Entrega completada el</th>
+                            <th>Acciones</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.WaterDelivery)
+
+                        {
+
+                            var estado = item.DeliveryStatus switch
+
+                            {
+
+                                1 => "Programada",
+
+                                2 => "En Proceso",
+
+                                3 => "Finalizada",
+
+                                4 => "Conforme",
+
+                                5 => "Denunciada",
+
+                                _ => "Desconocido"
+
+                            };
+
+
+
+                            var estadoClass = item.DeliveryStatus switch
+
+                            {
+
+                                4 => "text-success", // Verde para "Conforme"
+
+                                5 => "text-danger",  // Rojo para "Denunciada"
+
+                                _ => ""
+
+                            };
+
+                            <tr>
+                                <td>@item.Cistern.PlateNumber</td>
+                                <td>@($"{item.Driver.FirstName} {item.Driver.LastName}")</td>
+                                <td>@item.Otb.Name</td>
+                                <td>@item.DeliveryDate.ToString("dd/MM/yyyy")</td>
+                                <td>@(item.DeliveredAmount.HasValue ? item.DeliveredAmount.Value.ToString("C", new System.Globalization.CultureInfo("es-BO")) : "N/A")</td>
+                                <td class="@estadoClass">@estado</td>
+                                <td>@(item.ArrivalDate.HasValue ? item.ArrivalDate.Value.ToString("dd/MM/yyyy HH:mm") : "Aun sin realizarse.")</td>
+                                <td>@(item.DepartureDate.HasValue ? item.DepartureDate.Value.ToString("dd/MM/yyyy HH:mm") : "Aun sin realizarse.")</td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@item.WaterDeliveryId" class="btn btn-warning btn-sm">Editar</a>
+                                    <a asp-page="./Details" asp-route-id="@item.WaterDeliveryId" class="btn btn-info btn-sm">Detalles</a>
+                                    <a asp-page="./Delete" asp-route-id="@item.WaterDeliveryId" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>

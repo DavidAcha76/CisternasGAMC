@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kiurt\\Downloads\\New folder (3)\\CisternasGAMC-Manuel (1)\\CisternasGAMC-Manuel\\CisternasGAMC.csproj": {}
+    "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\CisternasGAMC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kiurt\\Downloads\\New folder (3)\\CisternasGAMC-Manuel (1)\\CisternasGAMC-Manuel\\CisternasGAMC.csproj": {
+    "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\CisternasGAMC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kiurt\\Downloads\\New folder (3)\\CisternasGAMC-Manuel (1)\\CisternasGAMC-Manuel\\CisternasGAMC.csproj",
+        "projectUniqueName": "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\CisternasGAMC.csproj",
         "projectName": "CisternasGAMC",
-        "projectPath": "C:\\Users\\Kiurt\\Downloads\\New folder (3)\\CisternasGAMC-Manuel (1)\\CisternasGAMC-Manuel\\CisternasGAMC.csproj",
+        "projectPath": "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\CisternasGAMC.csproj",
         "packagesPath": "C:\\Users\\Kiurt\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kiurt\\Downloads\\New folder (3)\\CisternasGAMC-Manuel (1)\\CisternasGAMC-Manuel\\obj\\",
+        "outputPath": "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Kiurt\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -79,6 +79,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[8.0.6, )"
+            },
+            "Telegram.Bot": {
+              "target": "Package",
+              "version": "[22.0.0, )"
             },
             "WebPush": {
               "target": "Package",

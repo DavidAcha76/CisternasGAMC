@@ -1,0 +1,15 @@
+﻿@media (max-width: 992px) {
+    /* Ajuste en pantallas medianas (tablet) para mostrar solo dos tarjetas por fila */
+    .weekly-planner .col-12 {
+        flex: 1 1 45%;
+        max-width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    /* En pantallas pequeñas (móviles) las tarjetas ocupan todo el ancho */
+    .weekly-planner .col-12 {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}

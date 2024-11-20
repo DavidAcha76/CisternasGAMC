@@ -1,0 +1,105 @@
+﻿@page
+@model CisternasGAMC.Pages.Admin.Cruds.WaterDeliveryCrud.CreateModelPro
+
+@{
+    ViewData["Title"] = "Crear Entregas";
+
+    Layout = "_LayoutAdmin";
+}
+
+<h1>Crear Entregas</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Crear Entregas</h3>
+            </div>
+            <form method="post">
+                <div class="card-body">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <!-- Selector de Cisterna -->
+                    <div class="form-group">
+                        <label asp-for="WaterDelivery.CisternId" class="control-label">Número de placa de Cisterna</label>
+                        <select asp-for="WaterDelivery.CisternId" class="form-control" asp-items="Model.Cisterns" required>
+                            <option value="">-- Seleccione una cisterna --</option>
+                        </select>
+                        <span asp-validation-for="WaterDelivery.CisternId" class="text-danger"></span>
+                    </div>
+
+                    <!-- Selector de Conductor -->
+                    <div class="form-group">
+                        <label asp-for="WaterDelivery.DriverId" class="control-label">Nombre Conductor</label>
+                        <select asp-for="WaterDelivery.DriverId" class="form-control" asp-items="Model.Drivers" required>
+                            <option value="">-- Seleccione un conductor --</option>
+                        </select>
+                        <span asp-validation-for="WaterDelivery.DriverId" class="text-danger"></span>
+                    </div>
+
+                    <!-- Seleccionar las OTBs para los registros -->
+                    <div class="form-group">
+                        <label class="control-label">Elija entre 2 y 3 OTBs</label>
+
+                        <!-- Campo de búsqueda y selección de OTB 1 (obligatorio) -->
+                        <div>
+                            <label for="otb-search-1">Buscar OTB 1</label>
+                            <input type="text" id="otb-search-1" class="form-control mb-2" placeholder="Buscar OTB 1" oninput="filterOtbs(1)">
+                            <select id="WaterDelivery_OtbId_1" class="form-control mb-2" asp-items="Model.Otbs" required name="SelectedOtbs">
+                                <option value="">-- Seleccione una OTB --</option>
+                            </select>
+                        </div>
+
+                        <!-- Campo de búsqueda y selección de OTB 2 (obligatorio) -->
+                        <div>
+                            <label for="otb-search-2">Buscar OTB 2</label>
+                            <input type="text" id="otb-search-2" class="form-control mb-2" placeholder="Buscar OTB 2" oninput="filterOtbs(2)">
+                            <select id="WaterDelivery_OtbId_2" class="form-control mb-2" asp-items="Model.Otbs" required name="SelectedOtbs">
+                                <option value="">-- Seleccione una OTB --</option>
+                            </select>
+                        </div>
+
+                        <!-- Campo de búsqueda y selección de OTB 3 (opcional) -->
+                        <div>
+                            <label for="otb-search-3">Buscar OTB 3</label>
+                            <input type="text" id="otb-search-3" class="form-control mb-2" placeholder="Buscar OTB 3" oninput="filterOtbs(3)">
+                            <select id="WaterDelivery_OtbId_3" class="form-control mb-2" asp-items="Model.Otbs" name="SelectedOtbs">
+                                <option value="">-- Seleccione una OTB --</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <!-- Fecha de entrega -->
+                    <div class="form-group">
+                        <label asp-for="WaterDelivery.DeliveryDate" class="control-label">Fecha de Entrega</label>
+                        <input asp-for="WaterDelivery.DeliveryDate" type="date" class="form-control" required />
+                        <span asp-validation-for="WaterDelivery.DeliveryDate" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Crear Entregas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Función para filtrar cada select de OTB basado en el campo de búsqueda correspondiente
+    function filterOtbs(selectNumber) {
+        const searchValue = document.getElementById(`otb-search-${selectNumber}`).value.toLowerCase();
+        const otbSelect = document.getElementById(`WaterDelivery_OtbId_${selectNumber}`);
+        for (const option of otbSelect.options) {
+            const isVisible = option.text.toLowerCase().includes(searchValue);
+            option.style.display = isVisible ? 'block' : 'none';
+        }
+    }
+</script>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

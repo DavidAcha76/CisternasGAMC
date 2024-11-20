@@ -4,9 +4,7 @@
 @{
     ViewData["Title"] = "Crear Usuario";
 
-
-
-    Layout = "_LayoutAdmin"; // Asegúrate de que tu layout ya tenga los estilos y scripts de AdminLTE.
+    Layout = "_LayoutAdmin";
 }
 
 <section class="content-header">
@@ -33,9 +31,9 @@
                     <input asp-for="User.Email" class="form-control" />
                     <span asp-validation-for="User.Email" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="User.Password" class="control-label">Contraseña</label>
-                    <input asp-for="User.Password" class="form-control" />
+                <div class="form-group" style="display: none;">
+                    <label asp-for="User.Password">Contraseña</label>
+                    <input asp-for="User.Password" class="form-control" value="77777777"/>
                     <span asp-validation-for="User.Password" class="text-danger"></span>
                 </div>
                 <div class="form-group">
@@ -45,12 +43,22 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="User.Role" class="control-label">Rol</label>
-                    <select asp-for="User.Role" class="form-control">
+                    <select asp-for="User.Role" id="UserRole" class="form-control">
                         <option value="">Seleccione un rol</option>
                         <option value="admin">Administrador</option>
                         <option value="driver">Conductor</option>
+                        <option value="president">Presidente</option>
                     </select>
                     <span asp-validation-for="User.Role" class="text-danger"></span>
+                </div>
+
+                <!-- Campo para OTB -->
+                <div id="OtbField" class="form-group" style="display: none;">
+                    <label asp-for="User.OtbId" class="control-label">Elija la OTB</label>
+                    <select asp-for="User.OtbId" class="form-control" asp-items="Model.Otbs">
+                        <option value="">-- Seleccione una OTB --</option>
+                    </select>
+                    <span asp-validation-for="User.OtbId" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
@@ -65,4 +73,66 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const userRole = document.getElementById("UserRole"); // Selector del rol
+            const otbField = document.getElementById("OtbField"); // Contenedor del combo de OTB
+
+            // Función para mostrar/ocultar el campo de OTB
+            function toggleOtbField() {
+                if (userRole.value === "president") {
+                    otbField.style.display = "block"; // Mostrar el combo de OTB
+                } else {
+                    otbField.style.display = "none"; // Ocultar el combo de OTB
+                }
+            }
+
+            // Escuchar el evento de cambio en el selector del rol
+            userRole.addEventListener("change", toggleOtbField);
+
+            // Inicializar el estado del combo al cargar la página
+            toggleOtbField(); // Ejecutar para establecer visibilidad inicial
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.querySelector("form"); // El formulario
+            const phoneNumberInput = document.querySelector("[asp-for='User.PhoneNumber']"); // Input de teléfono
+            const errorSpan = document.querySelector("[asp-validation-for='User.PhoneNumber']"); // Validación de teléfono
+
+ 
+
+            // Función para validar el número de teléfono
+            function validatePhoneNumber() {
+                const phoneNumber = phoneNumberInput.value.trim(); // Valor del input de teléfono
+                const phoneRegex = /^[67]\d{7}$/; // Regex para validar formato
+                if (!phoneRegex.test(phoneNumber)) {
+                    errorSpan.textContent = "El número de teléfono debe comenzar con 6 o 7 y tener exactamente 8 dígitos.";
+                    return false; // No válido
+                }
+                errorSpan.textContent = ""; // Limpiar mensaje de error
+                return true; // Válido
+            }
+
+            // Validar al intentar enviar el formulario
+            form.addEventListener("submit", function (event) {
+                const isPhoneValid = validatePhoneNumber();
+                if (!isPhoneValid) {
+                    event.preventDefault(); // Evitar envío si no es válido
+                }
+            });
+
+            // Validar en tiempo real al cambiar el valor del campo de teléfono
+            phoneNumberInput.addEventListener("input", validatePhoneNumber);
+
+            // Agregar evento para manejar el cambio del rol
+            userRole.addEventListener("change", toggleOtbField);
+
+            // Inicializar funciones al cargar la página
+            toggleOtbField(); // Ejecutar al inicio para configurar la visibilidad del campo OTB
+        });
+    </script>
+
 }

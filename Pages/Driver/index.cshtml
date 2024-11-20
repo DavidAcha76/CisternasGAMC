@@ -3,23 +3,24 @@
 @{
     Layout = "_LayoutDriver";
 }
+<link rel="stylesheet" href="~/css/Driver.css">
 
-<div class="container d-flex align-items-center justify-content-center">
-    <div class="form-section text-center" style="width: 100%; max-width: 600px;">
-        <h2 class="mb-4">Selecciona la OTB</h2>
-        <!-- Formulario que redirige a la página de entrega (Deliver) con el waterDeliveryId -->
-        <form method="get" asp-page="/Driver/Deliver">
-            <select id="otb" name="waterDeliveryId" class="form-control mb-3" style="font-size: 1.25rem;">
-                @foreach (var waterDelivery in Model.waterDeliveries)
+<div class="form-container">
+    <h2>Selecciona la OTB</h2> <!-- Título en blanco -->
+    <!-- Formulario que redirige a la página de entrega (Deliver) con el waterDeliveryId -->
+    <form method="get" asp-page="/Driver/Deliver">
+        <select id="otb" name="waterDeliveryId" class="form-control mb-3">
+            @foreach (var waterDelivery in Model.waterDeliveries)
+            {
+                var otb = waterDelivery.Otb;
+                if (otb != null)
                 {
-                    var otb = waterDelivery.Otb;
-                    if (otb != null)
-                    {
-                        <option value="@waterDelivery.WaterDeliveryId">@otb.Name</option>
-                    }
+                    <option value="@waterDelivery.WaterDeliveryId">@otb.Name</option>
                 }
-            </select>
+            }
+        </select>
+        <div class="text-center">
             <button type="submit" class="btn btn-primary btn-lg">Seleccionar Entrega</button>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>

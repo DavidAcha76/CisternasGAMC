@@ -26,7 +26,7 @@ namespace CisternasGAMC.Model
         public Otb? Otb { get; set; } = default!;
 
         [Required(ErrorMessage = "La fecha de entrega es obligatoria.")]
-        [DataType(DataType.DateTime)]
+        [DataType(DataType.Date)]
         public DateTime DeliveryDate { get; set; }
 
         [Range(0.1, float.MaxValue, ErrorMessage = "La cantidad entregada debe ser positiva.")]
