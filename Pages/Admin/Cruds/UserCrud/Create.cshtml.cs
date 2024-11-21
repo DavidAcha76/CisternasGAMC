@@ -59,6 +59,16 @@ namespace CisternasGAMC.Pages.Admin.Cruds.UserCrud
                 return Page();
             }
 
+            // Validar duplicación de correo electrónico
+            var existingUser = await _context.Users
+                .FirstOrDefaultAsync(u => u.Email == User.Email);
+            if (existingUser != null)
+            {
+                ModelState.AddModelError("User.Email", "Este correo electrónico ya está registrado. Por favor, utiliza uno diferente.");
+                PopulateOtbsList(); // Recargar la lista de OTBs
+                return Page();
+            }
+
             // Validar que la OTB sea seleccionada si el rol es "president"
             if (User.Role == "president" && !User.OtbId.HasValue)
             {

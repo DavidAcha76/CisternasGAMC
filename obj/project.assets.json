@@ -8597,11 +8597,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\CisternasGAMC.csproj",
+      "projectUniqueName": "C:\\Users\\Kiurt\\Documents\\GitHub\\CisternasGAMC\\CisternasGAMC.csproj",
       "projectName": "CisternasGAMC",
-      "projectPath": "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\CisternasGAMC.csproj",
+      "projectPath": "C:\\Users\\Kiurt\\Documents\\GitHub\\CisternasGAMC\\CisternasGAMC.csproj",
       "packagesPath": "C:\\Users\\Kiurt\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Kiurt\\Downloads\\CisternasGAMC Pre Demo (3)\\CisternasGAMC Pre Demo\\obj\\",
+      "outputPath": "C:\\Users\\Kiurt\\Documents\\GitHub\\CisternasGAMC\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Kiurt\\AppData\\Roaming\\NuGet\\NuGet.Config",

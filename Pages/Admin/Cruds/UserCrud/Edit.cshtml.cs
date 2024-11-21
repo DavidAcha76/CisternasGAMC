@@ -53,8 +53,15 @@ namespace CisternasGAMC.Pages.Admin.Cruds.UserCrud
             {
                 return Page();
             }
-            //User.Password = BCrypt.Net.BCrypt.HashPassword(User.Password);
 
+            // Verificar si el correo está siendo usado por otro usuario
+            if (await _context.Users.AnyAsync(u => u.Email == User.Email && u.UserId != User.UserId))
+            {
+                ModelState.AddModelError("User.Email", "El correo electrónico ya está registrado por otro usuario.");
+                return Page();
+            }
+
+            // Mantener la contraseña existente si no se modifica
             _context.Entry(User).Property(u => u.Password).IsModified = false;
 
             _context.Attach(User).State = EntityState.Modified;
@@ -77,6 +84,7 @@ namespace CisternasGAMC.Pages.Admin.Cruds.UserCrud
 
             return RedirectToPage("/Admin/Index");
         }
+
 
         private bool UserExists(short id)
         {

@@ -4839,3 +4839,5 @@ C:\Users\Kiurt\Downloads\CisternasGAMC Pre Demo (3)\CisternasGAMC Pre Demo\obj\D
 C:\Users\Kiurt\Downloads\CisternasGAMC Pre Demo (3)\CisternasGAMC Pre Demo\obj\Debug\net8.0\CisternasGAMC.pdb
 C:\Users\Kiurt\Downloads\CisternasGAMC Pre Demo (3)\CisternasGAMC Pre Demo\obj\Debug\net8.0\CisternasGAMC.genruntimeconfig.cache
 C:\Users\Kiurt\Downloads\CisternasGAMC Pre Demo (3)\CisternasGAMC Pre Demo\obj\Debug\net8.0\ref\CisternasGAMC.dll
+C:\Users\Kiurt\Documents\GitHub\CisternasGAMC\bin\Debug\net8.0\Telegram.Bot.dll
+C:\Users\Kiurt\Documents\GitHub\CisternasGAMC\obj\Debug\net8.0\CisternasGAMC.MvcApplicationPartsAssemblyInfo.cs
