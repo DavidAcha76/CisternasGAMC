@@ -25,7 +25,11 @@ namespace CisternasGAMC.Pages.Admin.Cruds.CisternCrud
 
         public async Task OnGetAsync()
         {
-            Cistern = await _context.Cisterns.ToListAsync();
+            // Cargar solo las cisternas activas (estado 1 o 2)
+            Cistern = await _context.Cisterns
+                .Where(c => c.Status == 1 || c.Status == 2)
+                .ToListAsync();
         }
+
     }
 }

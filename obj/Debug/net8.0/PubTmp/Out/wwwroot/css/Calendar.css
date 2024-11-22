@@ -1,0 +1,186 @@
+﻿/* General reset de márgenes y bordes para asegurar consistencia entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos generales del cuerpo para definir la fuente principal y el fondo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; /* Fondo gris claro para un diseño minimalista */
+}
+
+/* Clase para el contenedor transparente medio oscuro */
+.transparent-container {
+    background-color: #720faeb0; /* Color transparente medio oscuro */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilos específicos para el encabezado del apartado de entregas de agua */
+.delivery-header {
+    color: white; /* Texto blanco */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Contenedor principal del planificador semanal, con bordes suaves y sombra para resaltar */
+.weekly-planner {
+    background-color: #f2f2f2; /* Fondo del planificador acorde al estilo del cuerpo */
+    border: 1px solid #cfcfcf; /* Borde gris suave para separar del fondo */
+    padding: 6px; /* Espaciado interno para un diseño limpio */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para efecto de elevación */
+    border-radius: 10px; /* Bordes redondeados para un estilo moderno */
+}
+
+/* Estilos del encabezado del planificador, que indican la semana */
+.planner-header {
+    font-size: 24px; /* Tamaño de fuente más grande para destacar */
+    font-weight: bold; /* Texto en negrita para énfasis */
+    color: #69519A; /* Texto en un morado fuerte para mayor visibilidad */
+    background-color: #73D4E7; /* Fondo llamativo para atraer atención */
+    padding: 15px; /* Espaciado alrededor del texto */
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+}
+
+/* Estilos generales para los días de la semana dentro del planificador */
+.planner-day {
+    background-color: #4BBBDB; /* Fondo azul suave para un diseño fresco */
+    padding: 15px; /* Espaciado alrededor del nombre del día */
+    border-radius: 5px; /* Bordes redondeados para uniformidad */
+    font-size: 18px; /* Tamaño de fuente moderado para legibilidad */
+    color: white; /* Texto blanco para un buen contraste con el fondo */
+    font-weight: bold; /* Negrita para destacar el nombre del día */
+    border: 1px solid #1D89C0; /* Borde azul más oscuro para definición */
+    flex: 1; /* Flexbox para distribución uniforme */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra pequeña */
+    margin: 5px 0; /* Margen superior e inferior */
+}
+
+/* Estilos para las tareas asociadas a cada día del planificador */
+.planner-task {
+    background-color: #4BBBDB; /* Mismo color que los días para consistencia */
+    padding: 15px; /* Espaciado interno para separación adecuada del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 18px; /* Texto claro y legible */
+    color: white; /* Texto en blanco para mantener contraste */
+    font-weight: bold; /* Negrita para destacar la tarea */
+    border: 1px solid #1D89C0; /* Borde azul oscuro para delimitar tareas */
+    flex: 1; /* Flexbox para una distribución uniforme */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra pequeña */
+    margin: 5px 0; /* Margen superior e inferior */
+}
+
+/* Alternancia de colores para los días impares, diferenciando visualmente */
+.planner-day:nth-child(odd) {
+    background-color: #73D4E7; /* Cambio a un color azul diferente */
+}
+
+/* Ajustes en el tamaño de los iconos dentro de las tareas para mejor visibilidad */
+.planner-task i {
+    font-size: 20px; /* Iconos más grandes para mayor claridad */
+}
+
+/* Media queries para dispositivos con pantallas más pequeñas */
+@media (max-width: 768px) {
+    .planner-task {
+        font-size: 14px; /* Reducción del tamaño de la fuente en pantallas medianas */
+        gap: 8px; /* Espaciado entre elementos para una mejor distribución */
+    }
+
+    .planner-day {
+        font-size: 14px; /* Fuente más pequeña para días de la semana */
+        padding: 10px; /* Menor espaciado interno en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 576px) {
+    .planner-header {
+        font-size: 20px; /* Ajuste del tamaño del encabezado en pantallas pequeñas */
+    }
+
+    .planner-day {
+        font-size: 13px; /* Fuente aún más pequeña para maximizar el espacio */
+        padding: 8px; /* Menos espacio alrededor del texto */
+    }
+
+    .planner-task {
+        font-size: 12px; /* Tamaño de fuente reducido para las tareas */
+    }
+}
+
+/* Estados de entrega */
+.delivery-scheduled {
+    background-color: #F2F2F2; /* Gris claro */
+    color: #000; /* Texto oscuro */
+}
+
+.delivery-in-process {
+    background-color: #A3E4B0; /* Verde pastel */
+    color: #000; /* Texto oscuro */
+}
+
+.delivery-completed {
+    background-color: #5B87A5; /* Azul opaco */
+    color: #fff; /* Texto blanco */
+}
+
+.delivery-default {
+    background-color: #ccc; /* Gris por defecto */
+    color: #000;
+}
+
+/* Animaciones */
+@keyframes wobble {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
+
+    75% {
+        transform: rotate(-10deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.animate-icon {
+    display: inline-block;
+    animation: wobble 1.5s infinite ease-in-out;
+}
+
+.planner-day, .planner-task {
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra pequeña */
+    padding: 10px; /* Espaciado interno para mejorar el diseño */
+    margin: 5px 0; /* Margen superior e inferior */
+}
+/* Ocultar el calendario en pantallas más grandes */
+.weekly-planner {
+    display: none; /* Oculta el calendario por defecto */
+}
+
+#calendar-content-web {
+    display: block; /* Muestra el calendario solo en pantallas grandes */
+}
+
+/* Mostrar el calendario solo en dispositivos móviles */
+@media (max-width: 768px) {
+    /* Mostrar calendario móvil solo en pantallas pequeñas */
+    .weekly-planner {
+        display: block; /* Muestra el calendario móvil en pantallas más pequeñas */
+    }
+
+    #calendar-content-web {
+        display: none; /* Oculta el calendario web en pantallas pequeñas */
+    }
+}

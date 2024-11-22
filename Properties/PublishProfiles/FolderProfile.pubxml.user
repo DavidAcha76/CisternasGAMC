@@ -5,7 +5,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 <Project>
   <PropertyGroup>
     <_PublishTargetUrl>C:\Users\Kiurt\Downloads\realase</_PublishTargetUrl>
-    <History>False|2024-11-07T17:49:42.6771834Z||;True|2024-11-07T13:41:07.9424894-04:00||;</History>
+    <History>True|2024-11-21T23:45:21.6995090Z||;False|2024-11-21T19:43:54.2979556-04:00||;False|2024-11-21T19:40:31.2267983-04:00||;True|2024-11-21T19:23:38.7902749-04:00||;False|2024-11-07T13:49:42.6771834-04:00||;True|2024-11-07T13:41:07.9424894-04:00||;</History>
     <LastFailureDetails />
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Server=db9870.public.databaseasp.net%3b Database=db9870%3b User Id=db9870%3b Password=fQ-72#nSx3W=%3b Encrypt=True%3b TrustServerCertificate=True%3b MultipleActiveResultSets=True%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
 </Project>

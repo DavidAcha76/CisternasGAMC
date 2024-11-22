@@ -44,7 +44,7 @@ namespace CisternasGAMC.Pages.Admin.Cruds.UserCrud
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(short? id)
+        public async Task<IActionResult> OnPostAsync(short? id, string? action)
         {
             if (id == null)
             {
@@ -52,14 +52,26 @@ namespace CisternasGAMC.Pages.Admin.Cruds.UserCrud
             }
 
             var user = await _context.Users.FindAsync(id);
-            if (user != null)
+            if (user == null)
             {
-                User = user;
-                _context.Users.Remove(User);
+                return NotFound();
+            }
+
+            if (action == "despedir")
+            {
+                // Cambiar el estado del usuario a "Despedido"
+                user.Status = 3;
+                await _context.SaveChangesAsync();
+            }
+            else if (action == "eliminar")
+            {
+                // Eliminar definitivamente el usuario
+                _context.Users.Remove(user);
                 await _context.SaveChangesAsync();
             }
 
             return RedirectToPage("./Index");
         }
+
     }
 }

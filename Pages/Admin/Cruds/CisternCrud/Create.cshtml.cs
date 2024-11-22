@@ -40,7 +40,8 @@ namespace CisternasGAMC.Pages.Admin.Cruds.CisternCrud
 
             // Verificar si ya existe una cisterna con el mismo número de placa
             var existingCistern = await _context.Cisterns
-                .FirstOrDefaultAsync(c => c.PlateNumber == Cistern.PlateNumber);
+                .FirstOrDefaultAsync(c => c.PlateNumber == Cistern.PlateNumber && (c.Status == 1 || c.Status == 2));
+
 
             if (existingCistern != null)
             {

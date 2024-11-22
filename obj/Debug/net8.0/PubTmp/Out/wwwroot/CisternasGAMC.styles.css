@@ -1,0 +1,213 @@
+/* _content/CisternasGAMC/Pages/Shared/_Layout.cshtml.rz.scp.css */
+html[b-8t99jayboj], body[b-8t99jayboj] {
+    height: 100%;
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.wrapper[b-8t99jayboj] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content[b-8t99jayboj] {
+    flex: 1;
+    padding: 20px;
+}
+/* Estilo para la barra de navegación */
+.navbar[b-8t99jayboj] {
+    background-color: #4AC1E0;
+    padding: 5px 15px;
+}
+
+    .navbar .navbar-brand[b-8t99jayboj] {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    .navbar a.nav-link[b-8t99jayboj] {
+        color: #ffffff;
+        margin-right: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+        .navbar a.nav-link:hover[b-8t99jayboj] {
+            color: #ffd700; /* Color de hover */
+        }
+
+/* Estilo para enlaces */
+a[b-8t99jayboj] {
+    color: #0077cc;
+    text-decoration: none;
+}
+span[b-8t99jayboj] {
+    color: #424f83;
+}
+
+    a:hover[b-8t99jayboj] {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+/* Estilo para el footer */
+footer[b-8t99jayboj] {
+    background: #343a40;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+    footer .footer-links a[b-8t99jayboj] {
+        color: #f8f9fa;
+        margin: 0 10px;
+    }
+
+        footer .footer-links a:hover[b-8t99jayboj] {
+            color: #0077cc;
+        }
+
+    footer strong[b-8t99jayboj] {
+        display: block;
+        margin: 10px 0;
+    }
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .navbar a.nav-link[b-8t99jayboj] {
+        font-size: 0.9rem;
+    }
+
+    footer .footer-links[b-8t99jayboj] {
+        flex-direction: column;
+    }
+}
+
+/* _content/CisternasGAMC/Pages/Shared/_LayoutAdmin.cshtml.rz.scp.css */
+/* Estilos del logo de la marca */
+a.navbar-brand[b-xfzi5uhxr8] {
+    white-space: normal;
+    text-align: center;
+    word-break: break-word; /* Para no romper palabras, sino hacer saltos de línea */
+}
+
+/* Estilo general para los enlaces */
+a[b-xfzi5uhxr8] {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+/* Estilo del menú de navegación activo */
+.nav-pills .nav-link.active[b-xfzi5uhxr8], .nav-pills .show > .nav-link[b-xfzi5uhxr8] {
+    color: #fff;
+    background-color: #1b6ec2;
+}
+
+/* Estilo del pie de página */
+.footer[b-xfzi5uhxr8] {
+    background: #f8f9fa;
+    padding: 10px 20px;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+    position: relative;
+}
+
+    /* Mejora de la visibilidad en el pie de página */
+    .footer b[b-xfzi5uhxr8] {
+        font-weight: bold;
+    }
+
+/* Asegura que el contenido principal ocupe el espacio adecuado */
+.wrapper[b-xfzi5uhxr8] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper[b-xfzi5uhxr8] {
+    flex: 1;
+}
+/* _content/CisternasGAMC/Pages/Shared/_LayoutDriver.cshtml.rz.scp.css */
+html[b-vc3vogv128], body[b-vc3vogv128] {
+    height: 100%;
+    margin: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Estructura de la página */
+.wrapper[b-vc3vogv128] {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content[b-vc3vogv128] {
+    flex: 1;
+    padding: 20px;
+}
+
+.navbar[b-vc3vogv128] {
+    background-color: #4AC1E0;
+    padding: 5px 15px;
+}
+
+    .navbar .navbar-brand[b-vc3vogv128] {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    .navbar a.nav-link[b-vc3vogv128] {
+        color: #ffffff;
+        margin-right: 15px;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+
+        .navbar a.nav-link:hover[b-vc3vogv128] {
+            color: #ffd700; /* Color de hover */
+        }
+
+/* Estilo para enlaces generales */
+a[b-vc3vogv128] {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+    a:hover[b-vc3vogv128] {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+/* Estilo para el footer */
+footer[b-vc3vogv128] {
+    background: #343a40;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+}
+
+    footer .footer-links a[b-vc3vogv128] {
+        color: #f8f9fa;
+        margin: 0 10px;
+    }
+
+        footer .footer-links a:hover[b-vc3vogv128] {
+            color: #0077cc;
+        }
+
+    footer strong[b-vc3vogv128] {
+        display: block;
+        margin: 10px 0;
+    }
+
+/* Responsividad para móviles */
+@media (max-width: 768px) {
+    .navbar a.nav-link[b-vc3vogv128] {
+        font-size: 0.9rem;
+    }
+
+    footer .footer-links[b-vc3vogv128] {
+        flex-direction: column;
+    }
+}

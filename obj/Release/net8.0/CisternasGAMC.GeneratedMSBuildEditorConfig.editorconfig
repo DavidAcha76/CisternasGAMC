@@ -17,179 +17,179 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CisternasGAMC
 build_property.RootNamespace = CisternasGAMC
-build_property.ProjectDir = C:\Users\Kiurt\Downloads\CisternasGAMC Pre Demo 1\CisternasGAMC Pre Demo\
+build_property.ProjectDir = C:\Users\Kiurt\Documents\GitHub\CisternasGAMC\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Kiurt\Downloads\CisternasGAMC Pre Demo 1\CisternasGAMC Pre Demo
+build_property.MSBuildProjectDirectory = C:\Users\Kiurt\Documents\GitHub\CisternasGAMC
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/CisternCrud/Create.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/CisternCrud/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcQ2lzdGVybkNydWRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/CisternCrud/Delete.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/CisternCrud/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcQ2lzdGVybkNydWRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/CisternCrud/Details.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/CisternCrud/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcQ2lzdGVybkNydWRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/CisternCrud/Edit.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/CisternCrud/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcQ2lzdGVybkNydWRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/CisternCrud/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/CisternCrud/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcQ2lzdGVybkNydWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/OtbCrud/Create.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/OtbCrud/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcT3RiQ3J1ZFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/OtbCrud/Delete.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/OtbCrud/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcT3RiQ3J1ZFxEZWxldGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/OtbCrud/Details.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/OtbCrud/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcT3RiQ3J1ZFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/OtbCrud/Edit.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/OtbCrud/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcT3RiQ3J1ZFxFZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/OtbCrud/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/OtbCrud/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcT3RiQ3J1ZFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/prueba.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/prueba.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNccHJ1ZWJhLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/UserCrud/Create.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/UserCrud/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcVXNlckNydWRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/UserCrud/Delete.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/UserCrud/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcVXNlckNydWRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/UserCrud/Details.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/UserCrud/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcVXNlckNydWRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/UserCrud/Edit.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/UserCrud/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcVXNlckNydWRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/UserCrud/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/UserCrud/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcVXNlckNydWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/WaterDeliveryCrud/Create.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/WaterDeliveryCrud/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcV2F0ZXJEZWxpdmVyeUNydWRcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/WaterDeliveryCrud/CreatePro.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/WaterDeliveryCrud/CreatePro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcV2F0ZXJEZWxpdmVyeUNydWRcQ3JlYXRlUHJvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/WaterDeliveryCrud/Delete.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/WaterDeliveryCrud/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcV2F0ZXJEZWxpdmVyeUNydWRcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/WaterDeliveryCrud/Details.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/WaterDeliveryCrud/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcV2F0ZXJEZWxpdmVyeUNydWRcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/WaterDeliveryCrud/Edit.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/WaterDeliveryCrud/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcV2F0ZXJEZWxpdmVyeUNydWRcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Cruds/WaterDeliveryCrud/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Cruds/WaterDeliveryCrud/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cQ3J1ZHNcV2F0ZXJEZWxpdmVyeUNydWRcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Admin/Report/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Admin/Report/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cUmVwb3J0XEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Citizen/CisternCalendar.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Citizen/CisternCalendar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2l0aXplblxDaXN0ZXJuQ2FsZW5kYXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Driver/Deliver.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Driver/Deliver.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJpdmVyXERlbGl2ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Driver/DeliverFinished.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Driver/DeliverFinished.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJpdmVyXERlbGl2ZXJGaW5pc2hlZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Driver/index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Driver/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRHJpdmVyXGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Error.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Login/changePassword.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Login/changePassword.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cY2hhbmdlUGFzc3dvcmQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Login/Index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Login/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Login/Logout.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Login/Logout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW5cTG9nb3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/President/index.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/President/index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJlc2lkZW50XGluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/President/Report.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/President/Report.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJlc2lkZW50XFJlcG9ydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Privacy.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/_ViewImports.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/_ViewStart.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Shared/_Layout.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-8t99jayboj
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Shared/_LayoutAdmin.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Shared/_LayoutAdmin.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRBZG1pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = b-xfzi5uhxr8
 
-[C:/Users/Kiurt/Downloads/CisternasGAMC Pre Demo 1/CisternasGAMC Pre Demo/Pages/Shared/_LayoutDriver.cshtml]
+[C:/Users/Kiurt/Documents/GitHub/CisternasGAMC/Pages/Shared/_LayoutDriver.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXREcml2ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-vc3vogv128

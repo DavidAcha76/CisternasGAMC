@@ -54,8 +54,8 @@ namespace CisternasGAMC.Pages.Admin.Cruds.CisternCrud
             var cistern = await _context.Cisterns.FindAsync(id);
             if (cistern != null)
             {
-                Cistern = cistern;
-                _context.Cisterns.Remove(Cistern);
+                // En lugar de eliminar, actualizamos el estado a 3
+                cistern.Status = 3; // Asumiendo que el modelo tiene la propiedad `Status`
                 await _context.SaveChangesAsync();
             }
 

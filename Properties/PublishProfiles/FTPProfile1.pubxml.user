@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwhsARLoViU+RAKE7GQ5xXgAAAAACAAAAAAAQZgAAAAEAACAAAAAXV/0B+Rr//8mHq9iTClzl152cCvKUEItwHSYzGOby2wAAAAAOgAAAAAIAACAAAAAPJj6YLRhdr4CAH1di/vrQfHb7t6lTCfAdmpWxmMuXACAAAAAlSMW6T5LIfltbuVEv9h9i0QUgF6F7oVbFWohhvJ5XtEAAAAA9/Wy3vD2Ki2L00fhsz9sd4IOh41Pyj9v2xFKzvp6+VuMO4JPytMFZGboWQSf9af+UarJy2GCFaOdX+JPsdUTj</EncryptedPassword>
     <_PublishTargetUrl>ftp://site12086.siteasp.net/wwwroot</_PublishTargetUrl>
-    <History>True|2024-11-17T13:52:31.9230662Z||;True|2024-11-08T01:25:48.6225786-04:00||;</History>
+    <History>True|2024-11-22T03:47:15.8680194Z||;False|2024-11-21T19:58:29.0327967-04:00||;False|2024-11-21T18:11:42.9905667-04:00||;True|2024-11-17T09:52:31.9230662-04:00||;True|2024-11-08T01:25:48.6225786-04:00||;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -48,19 +48,19 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2024 02:54:08</publishTime>
     </File>
     <File Include="CisternasGAMC.deps.json">
-      <publishTime>11/17/2024 07:00:22</publishTime>
+      <publishTime>11/21/2024 20:52:22</publishTime>
     </File>
     <File Include="CisternasGAMC.dll">
-      <publishTime>11/17/2024 06:58:59</publishTime>
+      <publishTime>11/21/2024 20:52:17</publishTime>
     </File>
     <File Include="CisternasGAMC.exe">
-      <publishTime>11/17/2024 06:58:59</publishTime>
+      <publishTime>11/21/2024 20:52:17</publishTime>
     </File>
     <File Include="CisternasGAMC.pdb">
-      <publishTime>11/17/2024 06:58:59</publishTime>
+      <publishTime>11/21/2024 20:52:17</publishTime>
     </File>
     <File Include="CisternasGAMC.runtimeconfig.json">
-      <publishTime>11/17/2024 06:59:00</publishTime>
+      <publishTime>11/21/2024 14:34:21</publishTime>
     </File>
     <File Include="ClosedXML.dll">
       <publishTime>09/30/2024 07:20:52</publishTime>
@@ -714,7 +714,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>01/29/2022 11:04:12</publishTime>
     </File>
     <File Include="web.config">
-      <publishTime>11/17/2024 07:00:24</publishTime>
+      <publishTime>11/21/2024 20:52:26</publishTime>
     </File>
     <File Include="WebPush.dll">
       <publishTime>07/03/2021 02:47:16</publishTime>

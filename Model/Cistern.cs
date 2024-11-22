@@ -20,5 +20,7 @@ namespace CisternasGAMC.Model
         [Range(1, 32767, ErrorMessage = "La capacidad debe ser un número positivo.")]
         [Required(ErrorMessage = "La capacidad es obligatoria.")]
         public short Capacity { get; set; }
+
+
     }
 }

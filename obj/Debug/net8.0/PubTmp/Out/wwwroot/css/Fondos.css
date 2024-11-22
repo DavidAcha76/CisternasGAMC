@@ -1,0 +1,24 @@
+﻿/* Fondo con filtro azul */
+body {
+    background-image: url('../images/fondocochita.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-attachment: fixed;
+    background-color: #f4f4f4;
+    position: relative; /* Asegura que el filtro esté posicionado correctamente */
+}
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(11, 17, 29, 0.65); /* Filtro azul con transparencia */
+        z-index: -1; /* Asegura que esté detrás del contenido */
+    }
+.selected-district {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), rgba(0, 128, 255, 0.2)); /* Fondo transparente */
+}

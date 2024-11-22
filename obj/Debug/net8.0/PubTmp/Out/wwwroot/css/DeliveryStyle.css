@@ -1,0 +1,50 @@
+﻿body {
+    font-size: 20px; /* Tamaño del texto para mejorar la visibilidad */
+}
+
+/* Estilos personalizados para el formulario de entrega */
+.custom-deliver-form {
+    background-color: #78909C;
+    padding: 40px; /* Padding del card */
+}
+
+.custom-otb-name {
+    width: 100%;
+    font-size: 24px; /* Tamaño del texto del nombre de la OTB */
+}
+
+/* Estilos para un switcher estilizado */
+.custom-switch {
+    width: 60px; /* Ancho del switch */
+    height: 34px; /* Alto del switch */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el switch */
+}
+
+    .custom-switch:checked {
+        background-color: #007bff; /* Color cuando está marcado */
+    }
+
+/* Mejora la apariencia del switcher */
+.custom-form-check {
+    align-items: center; /* Centra verticalmente el texto y el switch */
+}
+
+    /* Espaciado entre el texto y el switcher */
+    .custom-form-check .form-check-label {
+        margin-right: 10px; /* Espacio entre el texto y el switch */
+    }
+
+/* Estilos para el campo "Monto Generado" */
+.custom-input {
+    background-color: #B0BEC5; /* Color de fondo para el campo de entrada */
+    font-size: 20px; /* Tamaño del texto en el campo de entrada */
+}
+
+/* Estilos para el botón de entrega */
+.custom-submit-btn {
+    width: 100%; /* Botón ocupa todo el ancho */
+    font-size: 20px; /* Tamaño del texto del botón */
+}
+.button-Finish{
+    margin-bottom: 15%;
+}
