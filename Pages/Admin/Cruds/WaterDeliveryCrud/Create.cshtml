@@ -53,9 +53,10 @@
                     <!-- Fecha de entrega -->
                     <div class="form-group">
                         <label asp-for="WaterDelivery.DeliveryDate" class="control-label">Fecha de Entrega</label>
-                        <input asp-for="WaterDelivery.DeliveryDate" type="date" class="form-control" required />
+                        <input asp-for="WaterDelivery.DeliveryDate" type="date" class="form-control" required id="deliveryDate" />
                         <span asp-validation-for="WaterDelivery.DeliveryDate" class="text-danger"></span>
                     </div>
+
 
                 </div>
                 <div class="card-footer">
@@ -92,6 +93,17 @@
         outline: none;
     }
 </style>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); // Meses van de 0 a 11
+        const dd = String(today.getDate()).padStart(2, '0');
+        const minDate = `${yyyy}-${mm}-${dd}`;
+
+        document.getElementById("deliveryDate").setAttribute("min", minDate);
+    });
+</script>
 
 <script>
     function toggleDropdown() {
